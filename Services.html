@@ -332,7 +332,7 @@
             <div class="request-service-content">
                 <h2>Ready to Experience Our Services?</h2>
                 <p>Let's work together to bring your printing, design, and tech needs to life. Contact us today and discover why Isabela is excited about TechPrint Core.</p>
-                <a href="Contact us.html" class="btn-primary">Request Service Design</a>
+                <a href="#" class="btn-primary" id="requestServiceBtn">Request Service Design</a>
             </div>
         </div>
     </section>
@@ -417,6 +417,235 @@
         </div>
     </footer>
 
+    <!-- Service Design Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Request Service Design</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-tabs">
+                    <button class="tab-btn active" onclick="openTab(event, 'invitationForm')">Invitation Request</button>
+                    <button class="tab-btn" onclick="openTab(event, 'designForm')">Design Services</button>
+                </div>
+                
+                <!-- Invitation Request Form -->
+                <div id="invitationForm" class="tab-content active">
+                    <form class="service-form">
+                        <h3>Personal Information</h3>
+                        <div class="form-group">
+                            <label for="invFullName">Full Name *</label>
+                            <input type="text" id="invFullName" name="invFullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="invEmail">Email *</label>
+                            <input type="email" id="invEmail" name="invEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="invPhone">Phone Number *</label>
+                            <input type="tel" id="invPhone" name="invPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="invAddress">Address *</label>
+                            <textarea id="invAddress" name="invAddress" required></textarea>
+                        </div>
+                        
+                        <h3>Event Details</h3>
+                        <div class="form-group">
+                            <label for="eventType">Event Type *</label>
+                            <select id="eventType" name="eventType" required onchange="toggleOtherEvent()">
+                                <option value="">Select event type</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="birthday">Birthday Party</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="graduation">Graduation</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="babyshower">Baby Shower</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="otherEventGroup" style="display: none;">
+                            <label for="otherEventType">Please specify event type *</label>
+                            <input type="text" id="otherEventType" name="otherEventType" placeholder="Enter your event type...">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDate">Event Date *</label>
+                            <input type="date" id="eventDate" name="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="packageSize">Package Size *</label>
+                            <select id="packageSize" name="packageSize" required>
+                                <option value="">Select package</option>
+                                <option value="5r-3x4">5R with 3x4 Tarpaulin (20 invitations) ₱900</option>
+                                <option value="4r-2x3">4R with 2x3 Tarpaulin (20 invitations) ₱750</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="invitationsRecopies">Number of Invitations (recopies ₱20/each) *</label>
+                            <input type="number" id="invitationsRecopies" name="invitationsRecopies" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDetails">Event Details (Event/Celebrant Name, Location, Date, Names of Attendees/invited)</label>
+                            <textarea id="eventDetails" name="eventDetails" placeholder="Enter event details including celebrant name, location, date, and names of attendees/invited guests..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Note: You may upload the event details if you have a document or photo</label>
+                            <button type="button" class="btn-upload" onclick="openUploadModal()">Upload Files</button>
+                            <div id="uploadedFiles" class="uploaded-files"></div>
+                        </div>
+                        
+                        <h3>Design Preference</h3>
+                        <div class="form-group">
+                            <label for="designPreference">Design Preference *</label>
+                            <select id="designPreference" name="designPreference" required>
+                                <option value="">Select design style</option>
+                                <option value="modern">Modern & Minimalist</option>
+                                <option value="classic">Classic & Elegant</option>
+                                <option value="fun">Fun & Creative</option>
+                                <option value="traditional">Traditional & Formal</option>
+                                <option value="custom">Custom Design</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="specialRequests">Special Requests / Additional Details</label>
+                            <textarea id="specialRequests" name="specialRequests" placeholder="Any specific requirements or additional information..."></textarea>
+                        </div>
+                        
+                        <h3>Timeline</h3>
+                        <div class="form-group">
+                            <label for="invitationTimeline">When do you need the invitations? *</label>
+                            <select id="invitationTimeline" name="invitationTimeline" required>
+                                <option value="">Select timeline</option>
+                                <option value="asap">ASAP (+₱100 rush fee)</option>
+                                <option value="1-week">Within 1 week</option>
+                                <option value="2-weeks">Within 2 weeks</option>
+                                <option value="1-month">Within 1 month</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                            <small style="color: #ff4444; font-size: 0.8rem; margin-top: 0.3rem; display: block;">Please note: Invitations must be requested 1-2 weeks or more prior to the needed date. ASAP timeline projects include an additional ₱100 rush fee.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="invitationDate">Expected Completion Date</label>
+                            <input type="date" id="invitationDate" name="invitationDate">
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Submit Invitation Request</button>
+                    </form>
+                </div>
+                
+                <!-- Design Services Form -->
+                <div id="designForm" class="tab-content">
+                    <form class="service-form">
+                        <h3>Personal Information</h3>
+                        <div class="form-group">
+                            <label for="desFullName">Full Name *</label>
+                            <input type="text" id="desFullName" name="desFullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="desEmail">Email *</label>
+                            <input type="email" id="desEmail" name="desEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="desPhone">Phone Number *</label>
+                            <input type="tel" id="desPhone" name="desPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="desAddress">Address *</label>
+                            <textarea id="desAddress" name="desAddress" required></textarea>
+                        </div>
+                        
+                        <h3>Design Type</h3>
+                        <div class="form-group">
+                            <label for="designType">Select Design Type *</label>
+                            <select id="designType" name="designType" required>
+                                <option value="">Select design type</option>
+                                <option value="invitation-design">Invitation (Design Only)</option>
+                                <option value="logo">Logo Design</option>
+                                <option value="business-card">Business Card Design</option>
+                                <option value="flyer">Flyer Design</option>
+                                <option value="invitation">Invitation Design</option>
+                                <option value="banner">Banner Design</option>
+                                <option value="calling-cards">Calling Cards</option>
+                                <option value="packaging">Packaging</option>
+                                <option value="labels">Labels / Stickers</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="designDescription">Project Description</label>
+                            <textarea id="designDescription" name="designDescription" placeholder="Describe your design project in detail..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="designTimeline">Timeline</label>
+                            <select id="designTimeline" name="designTimeline">
+                                <option value="">Select timeline</option>
+                                <option value="asap">ASAP (+₱100 rush fee)</option>
+                                <option value="1-week">Within 1 week</option>
+                                <option value="2-weeks">Within 2 weeks</option>
+                                <option value="1-month">Within 1 month</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                            <small style="color: #ff4444; font-size: 0.8rem; margin-top: 0.3rem; display: block;">Please note: Invitations must be requested 1-2 weeks or more prior to the needed date. ASAP timeline projects include an additional ₱100 rush fee.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="designDate">Expected Completion Date</label>
+                            <input type="date" id="designDate" name="designDate">
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Submit Design Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content upload-modal">
+            <div class="modal-header">
+                <h2>Upload Event Details</h2>
+                <span class="close" onclick="closeUploadModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="upload-options">
+                    <div class="upload-tabs">
+                        <button class="upload-tab-btn active" onclick="openUploadTab(event, 'fileUpload')">Upload Files</button>
+                        <button class="upload-tab-btn" onclick="openUploadTab(event, 'cameraCapture')">Take Photo</button>
+                    </div>
+                    
+                    <!-- File Upload Tab -->
+                    <div id="fileUpload" class="upload-tab-content active">
+                        <div class="upload-area" id="dropZone">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop files here or click to browse</p>
+                            <input type="file" id="fileInput" multiple accept="image/*,.pdf,.doc,.docx" style="display: none;">
+                            <button type="button" class="btn-browse" onclick="document.getElementById('fileInput').click()">Browse Files</button>
+                        </div>
+                        <div class="file-list" id="fileList"></div>
+                    </div>
+                    
+                    <!-- Camera Capture Tab -->
+                    <div id="cameraCapture" class="upload-tab-content">
+                        <div class="camera-container">
+                            <video id="cameraVideo" autoplay></video>
+                            <canvas id="cameraCanvas" style="display: none;"></canvas>
+                            <div class="camera-controls">
+                                <button type="button" class="btn-capture" id="captureBtn">Capture Photo</button>
+                                <button type="button" class="btn-start-camera" id="startCameraBtn">Start Camera</button>
+                            </div>
+                            <div class="captured-photos" id="capturedPhotos"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="upload-actions">
+                    <button type="button" class="btn-cancel" onclick="closeUploadModal()">Cancel</button>
+                    <button type="button" class="btn-upload-confirm" onclick="confirmUpload()">Upload to Google Drive</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
@@ -436,6 +665,258 @@
                         mainNav.classList.remove('nav-open');
                         mobileMenuToggle.classList.remove('active');
                     });
+                });
+            }
+
+            // Modal functionality
+            const modal = document.getElementById('serviceModal');
+            const closeBtn = document.querySelector('.close');
+            const requestServiceBtn = document.getElementById('requestServiceBtn');
+            
+            // Open modal when clicking "Request Service Design" button
+            if (requestServiceBtn) {
+                requestServiceBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.style.display = 'block';
+                });
+            }
+            
+            // Close modal
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Tab functionality
+            function openTab(evt, tabName) {
+                const tabContents = document.getElementsByClassName('tab-content');
+                const tabButtons = document.getElementsByClassName('tab-btn');
+                
+                for (let i = 0; i < tabContents.length; i++) {
+                    tabContents[i].classList.remove('active');
+                }
+                
+                for (let i = 0; i < tabButtons.length; i++) {
+                    tabButtons[i].classList.remove('active');
+                }
+                
+                document.getElementById(tabName).classList.add('active');
+                evt.currentTarget.classList.add('active');
+            }
+            
+            // Toggle "Other" event type input
+            function toggleOtherEvent() {
+                const eventType = document.getElementById('eventType');
+                const otherEventGroup = document.getElementById('otherEventGroup');
+                const otherEventInput = document.getElementById('otherEventType');
+                
+                if (eventType.value === 'other') {
+                    otherEventGroup.style.display = 'block';
+                    otherEventInput.required = true;
+                } else {
+                    otherEventGroup.style.display = 'none';
+                    otherEventInput.required = false;
+                    otherEventInput.value = '';
+                }
+            }
+            
+            // Upload Modal Functions
+            let uploadedFiles = [];
+            let capturedPhotosArray = [];
+            
+            function openUploadModal() {
+                document.getElementById('uploadModal').style.display = 'block';
+            }
+            
+            function closeUploadModal() {
+                document.getElementById('uploadModal').style.display = 'none';
+            }
+            
+            function openUploadTab(evt, tabName) {
+                const tabContents = document.getElementsByClassName('upload-tab-content');
+                const tabButtons = document.getElementsByClassName('upload-tab-btn');
+                
+                for (let i = 0; i < tabContents.length; i++) {
+                    tabContents[i].classList.remove('active');
+                }
+                
+                for (let i = 0; i < tabButtons.length; i++) {
+                    tabButtons[i].classList.remove('active');
+                }
+                
+                document.getElementById(tabName).classList.add('active');
+                evt.currentTarget.classList.add('active');
+            }
+            
+            // File upload functionality
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const fileList = document.getElementById('fileList');
+            
+            if (dropZone && fileInput) {
+                dropZone.addEventListener('click', () => fileInput.click());
+                
+                dropZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    dropZone.classList.add('drag-over');
+                });
+                
+                dropZone.addEventListener('dragleave', () => {
+                    dropZone.classList.remove('drag-over');
+                });
+                
+                dropZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    dropZone.classList.remove('drag-over');
+                    handleFiles(e.dataTransfer.files);
+                });
+                
+                fileInput.addEventListener('change', (e) => {
+                    handleFiles(e.target.files);
+                });
+            }
+            
+            function handleFiles(files) {
+                Array.from(files).forEach(file => {
+                    if (file.type.startsWith('image/') || file.type === 'application/pdf' || 
+                        file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+                        uploadedFiles.push(file);
+                        displayFile(file);
+                    }
+                });
+            }
+            
+            function displayFile(file) {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <span class="file-name">${file.name}</span>
+                    <span class="file-size">${(file.size / 1024).toFixed(1)} KB</span>
+                    <button type="button" class="btn-remove" onclick="removeFile('${file.name}')">×</button>
+                `;
+                fileList.appendChild(fileItem);
+            }
+            
+            function removeFile(fileName) {
+                uploadedFiles = uploadedFiles.filter(file => file.name !== fileName);
+                const fileItems = fileList.querySelectorAll('.file-item');
+                fileItems.forEach(item => {
+                    if (item.querySelector('.file-name').textContent === fileName) {
+                        item.remove();
+                    }
+                });
+            }
+            
+            // Camera functionality
+            let stream = null;
+            const startCameraBtn = document.getElementById('startCameraBtn');
+            const captureBtn = document.getElementById('captureBtn');
+            const cameraVideo = document.getElementById('cameraVideo');
+            const cameraCanvas = document.getElementById('cameraCanvas');
+            const capturedPhotos = document.getElementById('capturedPhotos');
+            
+            if (startCameraBtn) {
+                startCameraBtn.addEventListener('click', async () => {
+                    try {
+                        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                        cameraVideo.srcObject = stream;
+                        startCameraBtn.style.display = 'none';
+                        captureBtn.style.display = 'inline-block';
+                    } catch (err) {
+                        alert('Camera access denied or not available');
+                    }
+                });
+            }
+            
+            if (captureBtn) {
+                captureBtn.addEventListener('click', () => {
+                    const context = cameraCanvas.getContext('2d');
+                    cameraCanvas.width = cameraVideo.videoWidth;
+                    cameraCanvas.height = cameraVideo.videoHeight;
+                    context.drawImage(cameraVideo, 0, 0);
+                    
+                    const imageData = cameraCanvas.toDataURL('image/png');
+                    capturedPhotos.innerHTML += `
+                        <div class="captured-photo">
+                            <img src="${imageData}" alt="Captured photo">
+                            <button type="button" class="btn-remove" onclick="removePhoto(this)">×</button>
+                        </div>
+                    `;
+                    capturedPhotos.style.display = 'block';
+                });
+            }
+            
+            function removePhoto(button) {
+                button.parentElement.remove();
+            }
+            
+            function confirmUpload() {
+                if (uploadedFiles.length === 0 && capturedPhotos.children.length === 0) {
+                    alert('Please upload files or take photos first');
+                    return;
+                }
+                
+                alert('Files uploaded successfully! You can now close this window and continue with your form.');
+                closeUploadModal();
+            }
+            
+            // Form submissions
+            const invitationForm = document.querySelector('#invitationForm .service-form');
+            const designForm = document.querySelector('#designForm .service-form');
+
+            if (invitationForm) {
+                invitationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    
+                    if (!data.invFullName || !data.invEmail || !data.invPhone || !data.eventType || !data.eventDate || !data.packageSize || !data.invitationTimeline) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // Simulate form submission
+                    console.log('Sending email from:', data.invEmail, 'to: techprintcoreph@gmail.com');
+                    console.log('Subject: Invitation Request -', data.invFullName);
+                    console.log('Form data:', data);
+                    
+                    alert('Submission Confirmed! Thank you for filling out the form. Here\'s what you can expect next: *Our team will review your information and respond within 1-2 business days for confirmations. *If your matter is urgent, please call us at 0954-1763-978. We look forward to connecting with you again.');
+                    
+                    // Reset form
+                    this.reset();
+                    modal.style.display = 'none';
+                });
+            }
+
+            if (designForm) {
+                designForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    
+                    if (!data.desFullName || !data.desEmail || !data.desPhone || !data.designType) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // Simulate form submission
+                    console.log('Sending email from:', data.desEmail, 'to: techprintcoreph@gmail.com');
+                    console.log('Subject: Design Services Request -', data.desFullName);
+                    console.log('Form data:', data);
+                    
+                    alert('Submission Confirmed! Thank you for filling out the form. Here\'s what you can expect next: *Our team will review your information and respond within 1-2 business days for confirmations. *If your matter is urgent, please call us at 0954-1763-978. We look forward to connecting with you again.');
+                    
+                    // Reset form
+                    this.reset();
+                    modal.style.display = 'none';
                 });
             }
         });

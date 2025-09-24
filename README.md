@@ -6,7 +6,7 @@ A modern, responsive website for TechPrint Core - a professional printing, desig
 
 - **Responsive Design** - Optimized for desktop, tablet, and mobile devices
 - **Modern UI/UX** - Dark theme with red accents and glass-morphism effects
-- **Interactive Forms** - Contact form with email and Trello integration
+- **Interactive Forms** - Contact form with email integration
 - **Loyalty Program** - Complete loyalty card system with sign-up functionality
 - **Service Pages** - Comprehensive service offerings and pricing
 - **Contact Integration** - Multiple contact methods with social media links
@@ -30,8 +30,8 @@ A modern, responsive website for TechPrint Core - a professional printing, desig
 
 ## Form Integrations
 
-- **Contact Form** - Sends emails to `techprintcoreph@gmail.com` and creates Trello cards
-- **Loyalty Sign-up** - Sends applications to `techprintcoreph@gmail.com` and creates Trello cards
+- **Contact Form** - Sends emails to `techprintcoreph@gmail.com`
+- **Loyalty Sign-up** - Sends applications to `techprintcoreph@gmail.com`
 - **Service Design Requests** - Comprehensive modal forms for design services
 
 ## Deployment

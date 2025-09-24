@@ -560,48 +560,17 @@ Best regards,
 TechPrint Core Connect System
                 `;
 
-                // Create Trello card data
-                const trelloCardData = {
-                    name: `Loyalty Application - ${data.fullName}`,
-                    desc: `**New Loyalty Program Application**
 
-**Personal Information:**
-- Full Name: ${data.fullName}
-- Email: ${data.email}
-- Phone: ${data.phone}
-- Address: ${data.address || 'Not provided'}
-
-**Referral Information:**
-- How did you hear about us: ${data.referral || 'Not specified'}
-- Referrer's name: ${data.referralName || 'Not provided'}
-
-**Application Details:**
-- Application Date: ${new Date().toLocaleDateString()}
-- Application Time: ${new Date().toLocaleTimeString()}
-- Terms Accepted: Yes
-
-**Next Steps:**
-1. Process application
-2. Prepare loyalty card
-3. Contact customer for pickup
-4. Add to loyalty program database`,
-                    idList: 'YhcXDtMg', // Trello board ID
-                    labels: ['loyalty-program', 'new-application']
-                };
-
-                // Simulate email sending
-                console.log('Sending email to: techprintcoreph@gmail.com');
+                // Simulate email sending from user's email
+                console.log('Sending email from:', data.email, 'to: techprintcoreph@gmail.com');
                 console.log('Subject:', emailSubject);
                 console.log('Body:', emailBody);
 
-                // Simulate Trello card creation
-                console.log('Creating Trello card:', trelloCardData);
 
                 // Simulate API calls
                 setTimeout(() => {
                     // In a real implementation, you would:
                     // 1. Send email using email service (EmailJS, Formspree, etc.)
-                    // 2. Create Trello card using Trello API
                     
                     alert('Thank you for signing up! We\'ll process your application and contact you within 1-2 business days to arrange pickup of your FREE loyalty card.');
                     loyaltySignupForm.reset();

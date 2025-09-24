@@ -82,9 +82,8 @@ techprint-core-website/
 ## Important Notes
 
 ### Form Functionality
-- **Contact Form**: Currently uses simulated email/Trello integration
+- **Contact Form**: Currently uses simulated email integration
 - **For Production**: Replace with real email service (EmailJS, Formspree, etc.)
-- **Trello Integration**: Requires API keys for production use
 
 ### Required Updates for Production
 
@@ -92,11 +91,8 @@ techprint-core-website/
    - Sign up for EmailJS, Formspree, or similar service
    - Replace simulated email sending with real API calls
 
-2. **Trello Integration:**
-   - Get Trello API key and token
-   - Replace simulated Trello card creation with real API calls
 
-3. **Domain Setup (Optional):**
+2. **Domain Setup (Optional):**
    - Purchase custom domain
    - Configure DNS settings
    - Set up SSL certificate

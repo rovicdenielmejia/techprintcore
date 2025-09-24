@@ -868,249 +868,194 @@
     </div>
 
     <script>
-        // Wait for DOM to be ready
-        document.addEventListener('DOMContentLoaded', function() {
-            // Modal functionality
-            const modal = document.getElementById('serviceModal');
-            const closeBtn = document.querySelector('.close');
-            const serviceButtons = document.querySelectorAll('a[href="Services.html"].btn-secondary');
+        // Modal functionality
+        const modal = document.getElementById('serviceModal');
+        const closeBtn = document.querySelector('.close');
+        const serviceButtons = document.querySelectorAll('a[href="Services.html"].btn-secondary');
+        
+        // Open modal when clicking "Request Service Design" buttons
+        serviceButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.style.display = 'block';
+            });
+        });
+        
+        // Close modal
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Tab functionality
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            const tabButtons = document.getElementsByClassName('tab-btn');
             
-            // Check if elements exist before adding event listeners
-            if (modal && closeBtn) {
-                // Close modal
-                closeBtn.addEventListener('click', function() {
-                    modal.style.display = 'none';
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        // Toggle "Other" event type input
+        function toggleOtherEvent() {
+            const eventType = document.getElementById('eventType');
+            const otherEventGroup = document.getElementById('otherEventGroup');
+            const otherEventInput = document.getElementById('otherEventType');
+            
+            if (eventType.value === 'other') {
+                otherEventGroup.style.display = 'block';
+                otherEventInput.required = true;
+            } else {
+                otherEventGroup.style.display = 'none';
+                otherEventInput.required = false;
+                otherEventInput.value = '';
+            }
+        }
+        
+        // Upload Modal Functions
+        let uploadedFiles = [];
+        let capturedPhotos = [];
+        
+        function openUploadModal() {
+            document.getElementById('uploadModal').style.display = 'block';
+        }
+        
+        function closeUploadModal() {
+            document.getElementById('uploadModal').style.display = 'none';
+        }
+        
+        function openUploadTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName('upload-tab-content');
+            const tabButtons = document.getElementsByClassName('upload-tab-btn');
+            
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        // File upload handling
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+        
+        function handleFileSelect(event) {
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                uploadedFiles.push(files[i]);
+            }
+            displayFiles();
+        }
+        
+        function displayFiles() {
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            
+            uploadedFiles.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <span>${file.name}</span>
+                    <button type="button" onclick="removeFile(${index})" class="btn-remove">×</button>
+                `;
+                fileList.appendChild(fileItem);
+            });
+        }
+        
+        function removeFile(index) {
+            uploadedFiles.splice(index, 1);
+            displayFiles();
+        }
+        
+        // Camera functionality
+        let stream = null;
+        
+        document.getElementById('startCameraBtn').addEventListener('click', startCamera);
+        document.getElementById('captureBtn').addEventListener('click', capturePhoto);
+        
+        function startCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(mediaStream) {
+                    stream = mediaStream;
+                    document.getElementById('cameraVideo').srcObject = stream;
+                    document.getElementById('startCameraBtn').style.display = 'none';
+                    document.getElementById('captureBtn').style.display = 'inline-block';
+                })
+                .catch(function(err) {
+                    alert('Camera access denied: ' + err);
                 });
-                
-                // Close modal when clicking outside
-                window.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        modal.style.display = 'none';
-                    }
-                });
-            }
+        }
+        
+        function capturePhoto() {
+            const video = document.getElementById('cameraVideo');
+            const canvas = document.getElementById('cameraCanvas');
+            const ctx = canvas.getContext('2d');
             
-            // Open modal when clicking "Request Service Design" buttons
-            if (serviceButtons.length > 0) {
-                serviceButtons.forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        if (modal) {
-                            modal.style.display = 'block';
-                        }
-                    });
-                });
-            }
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0);
             
-            // Tab functionality
-            window.openTab = function(evt, tabName) {
-                const tabContents = document.getElementsByClassName('tab-content');
-                const tabButtons = document.getElementsByClassName('tab-btn');
-                
-                for (let i = 0; i < tabContents.length; i++) {
-                    tabContents[i].classList.remove('active');
-                }
-                
-                for (let i = 0; i < tabButtons.length; i++) {
-                    tabButtons[i].classList.remove('active');
-                }
-                
-                const targetTab = document.getElementById(tabName);
-                if (targetTab) {
-                    targetTab.classList.add('active');
-                }
-                if (evt && evt.currentTarget) {
-                    evt.currentTarget.classList.add('active');
-                }
-            }
-            
-            // Toggle "Other" event type input
-            window.toggleOtherEvent = function() {
-                const eventType = document.getElementById('eventType');
-                const otherEventGroup = document.getElementById('otherEventGroup');
-                const otherEventInput = document.getElementById('otherEventType');
-                
-                if (eventType && otherEventGroup && otherEventInput) {
-                    if (eventType.value === 'other') {
-                        otherEventGroup.style.display = 'block';
-                        otherEventInput.required = true;
-                    } else {
-                        otherEventGroup.style.display = 'none';
-                        otherEventInput.required = false;
-                        otherEventInput.value = '';
-                    }
-                }
-            }
-            
-            // Upload Modal Functions
-            window.uploadedFiles = [];
-            window.capturedPhotos = [];
-            
-            window.openUploadModal = function() {
-                const uploadModal = document.getElementById('uploadModal');
-                if (uploadModal) {
-                    uploadModal.style.display = 'block';
-                }
-            }
-            
-            window.closeUploadModal = function() {
-                const uploadModal = document.getElementById('uploadModal');
-                if (uploadModal) {
-                    uploadModal.style.display = 'none';
-                }
-            }
-            
-            window.openUploadTab = function(evt, tabName) {
-                const tabContents = document.getElementsByClassName('upload-tab-content');
-                const tabButtons = document.getElementsByClassName('upload-tab-btn');
-                
-                for (let i = 0; i < tabContents.length; i++) {
-                    tabContents[i].classList.remove('active');
-                }
-                
-                for (let i = 0; i < tabButtons.length; i++) {
-                    tabButtons[i].classList.remove('active');
-                }
-                
-                const targetTab = document.getElementById(tabName);
-                if (targetTab) {
-                    targetTab.classList.add('active');
-                }
-                if (evt && evt.currentTarget) {
-                    evt.currentTarget.classList.add('active');
-                }
-            }
-            
-            // File upload handling
-            const fileInput = document.getElementById('fileInput');
-            if (fileInput) {
-                fileInput.addEventListener('change', handleFileSelect);
-            }
-            
-            window.handleFileSelect = function(event) {
-                const files = event.target.files;
-                for (let i = 0; i < files.length; i++) {
-                    window.uploadedFiles.push(files[i]);
-                }
-                displayFiles();
-            }
-            
-            window.displayFiles = function() {
-                const fileList = document.getElementById('fileList');
-                if (fileList) {
-                    fileList.innerHTML = '';
-                    
-                    window.uploadedFiles.forEach((file, index) => {
-                        const fileItem = document.createElement('div');
-                        fileItem.className = 'file-item';
-                        fileItem.innerHTML = `
-                            <span>${file.name}</span>
-                            <button type="button" onclick="removeFile(${index})" class="btn-remove">×</button>
-                        `;
-                        fileList.appendChild(fileItem);
-                    });
-                }
-            }
-            
-            window.removeFile = function(index) {
-                window.uploadedFiles.splice(index, 1);
-                displayFiles();
-            }
-            
-            // Camera functionality
-            window.stream = null;
-            
-            const startCameraBtn = document.getElementById('startCameraBtn');
-            const captureBtn = document.getElementById('captureBtn');
-            
-            if (startCameraBtn) {
-                startCameraBtn.addEventListener('click', startCamera);
-            }
-            if (captureBtn) {
-                captureBtn.addEventListener('click', capturePhoto);
-            }
-            
-            window.startCamera = function() {
-                navigator.mediaDevices.getUserMedia({ video: true })
-                    .then(function(mediaStream) {
-                        window.stream = mediaStream;
-                        const cameraVideo = document.getElementById('cameraVideo');
-                        const startCameraBtn = document.getElementById('startCameraBtn');
-                        const captureBtn = document.getElementById('captureBtn');
-                        
-                        if (cameraVideo) {
-                            cameraVideo.srcObject = mediaStream;
-                        }
-                        if (startCameraBtn) {
-                            startCameraBtn.style.display = 'none';
-                        }
-                        if (captureBtn) {
-                            captureBtn.style.display = 'inline-block';
-                        }
-                    })
-                    .catch(function(err) {
-                        alert('Camera access denied: ' + err);
-                    });
-            }
-            
-            window.capturePhoto = function() {
-                const video = document.getElementById('cameraVideo');
-                const canvas = document.getElementById('cameraCanvas');
-                
-                if (video && canvas) {
-                    const ctx = canvas.getContext('2d');
-                    
-                    canvas.width = video.videoWidth;
-                    canvas.height = video.videoHeight;
-                    ctx.drawImage(video, 0, 0);
-                    
-                    canvas.toBlob(function(blob) {
-                        const file = new File([blob], 'captured-photo-' + Date.now() + '.jpg', { type: 'image/jpeg' });
-                        window.capturedPhotos.push(file);
-                        displayCapturedPhotos();
-                    }, 'image/jpeg');
-                }
-            }
-            
-            window.displayCapturedPhotos = function() {
-                const container = document.getElementById('capturedPhotos');
-                if (container) {
-                    container.innerHTML = '';
-                    
-                    window.capturedPhotos.forEach((photo, index) => {
-                        const photoItem = document.createElement('div');
-                        photoItem.className = 'captured-photo-item';
-                        photoItem.innerHTML = `
-                            <img src="${URL.createObjectURL(photo)}" alt="Captured Photo">
-                            <button type="button" onclick="removeCapturedPhoto(${index})" class="btn-remove">×</button>
-                        `;
-                        container.appendChild(photoItem);
-                    });
-                }
-            }
-            
-            window.removeCapturedPhoto = function(index) {
-                window.capturedPhotos.splice(index, 1);
+            canvas.toBlob(function(blob) {
+                const file = new File([blob], 'captured-photo-' + Date.now() + '.jpg', { type: 'image/jpeg' });
+                capturedPhotos.push(file);
                 displayCapturedPhotos();
+            }, 'image/jpeg');
+        }
+        
+        function displayCapturedPhotos() {
+            const container = document.getElementById('capturedPhotos');
+            container.innerHTML = '';
+            
+            capturedPhotos.forEach((photo, index) => {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'captured-photo-item';
+                photoItem.innerHTML = `
+                    <img src="${URL.createObjectURL(photo)}" alt="Captured Photo">
+                    <button type="button" onclick="removeCapturedPhoto(${index})" class="btn-remove">×</button>
+                `;
+                container.appendChild(photoItem);
+            });
+        }
+        
+        function removeCapturedPhoto(index) {
+            capturedPhotos.splice(index, 1);
+            displayCapturedPhotos();
+        }
+        
+        function confirmUpload() {
+            const allFiles = [...uploadedFiles, ...capturedPhotos];
+            if (allFiles.length === 0) {
+                alert('Please select or capture at least one file.');
+                return;
             }
             
-            window.confirmUpload = function() {
-                const allFiles = [...window.uploadedFiles, ...window.capturedPhotos];
-                if (allFiles.length === 0) {
-                    alert('Please select or capture at least one file.');
-                    return;
-                }
-                
-                // Display uploaded files in the main form
-                const uploadedFilesDiv = document.getElementById('uploadedFiles');
-                if (uploadedFilesDiv) {
-                    uploadedFilesDiv.innerHTML = `<p><strong>Uploaded Files:</strong> ${allFiles.length} file(s) ready for upload</p>`;
-                }
-                
-                closeUploadModal();
-            }
+            // Display uploaded files in the main form
+            const uploadedFilesDiv = document.getElementById('uploadedFiles');
+            uploadedFilesDiv.innerHTML = `<p><strong>Uploaded Files:</strong> ${allFiles.length} file(s) ready for upload</p>`;
             
-            // Form submission handling
+            closeUploadModal();
+        }
+        
+        // Form submission handling
+        document.addEventListener('DOMContentLoaded', function() {
             // Handle invitation form submission
             const invitationForm = document.querySelector('#invitationForm form');
             if (invitationForm) {
@@ -1128,175 +1073,116 @@
                     submitDesignForm();
                 });
             }
+        });
+        
+        function submitInvitationForm() {
+            const formData = new FormData();
+            const allFiles = [...uploadedFiles, ...capturedPhotos];
             
-            window.submitInvitationForm = function() {
-                const formData = new FormData();
-                const allFiles = [...window.uploadedFiles, ...window.capturedPhotos];
-                
-                // Collect form data
-                formData.append('formType', 'Invitation Request');
-                formData.append('fullName', document.getElementById('invFullName').value);
-                formData.append('email', document.getElementById('invEmail').value);
-                formData.append('phone', document.getElementById('invPhone').value);
-                formData.append('address', document.getElementById('invAddress').value);
-                formData.append('eventType', document.getElementById('eventType').value);
-                formData.append('otherEventType', document.getElementById('otherEventType').value);
-                formData.append('eventDate', document.getElementById('eventDate').value);
-                formData.append('packageSize', document.getElementById('packageSize').value);
-                formData.append('invitationsRecopies', document.getElementById('invitationsRecopies').value);
-                formData.append('eventDetails', document.getElementById('eventDetails').value);
-                formData.append('invitationTimeline', document.getElementById('invitationTimeline').value);
-                formData.append('invitationDate', document.getElementById('invitationDate').value);
-                formData.append('designPreference', document.getElementById('designPreference').value);
-                formData.append('specialRequests', document.getElementById('specialRequests').value);
-                
-                // Add files
-                allFiles.forEach((file, index) => {
-                    formData.append(`file_${index}`, file);
-                });
-                
-                // Send to email (simulated)
-                sendToEmail(formData, 'Invitation Request');
-            }
+            // Collect form data
+            formData.append('formType', 'Invitation Request');
+            formData.append('fullName', document.getElementById('invFullName').value);
+            formData.append('email', document.getElementById('invEmail').value);
+            formData.append('phone', document.getElementById('invPhone').value);
+            formData.append('address', document.getElementById('invAddress').value);
+            formData.append('eventType', document.getElementById('eventType').value);
+            formData.append('otherEventType', document.getElementById('otherEventType').value);
+            formData.append('eventDate', document.getElementById('eventDate').value);
+            formData.append('packageSize', document.getElementById('packageSize').value);
+            formData.append('invitationsRecopies', document.getElementById('invitationsRecopies').value);
+            formData.append('eventDetails', document.getElementById('eventDetails').value);
+            formData.append('invitationTimeline', document.getElementById('invitationTimeline').value);
+            formData.append('invitationDate', document.getElementById('invitationDate').value);
+            formData.append('designPreference', document.getElementById('designPreference').value);
+            formData.append('specialRequests', document.getElementById('specialRequests').value);
             
-            window.submitDesignForm = function() {
-                const formData = new FormData();
-                const allFiles = [...window.uploadedFiles, ...window.capturedPhotos];
-                
-                // Collect form data
-                formData.append('formType', 'Design Services Request');
-                formData.append('fullName', document.getElementById('desFullName').value);
-                formData.append('email', document.getElementById('desEmail').value);
-                formData.append('phone', document.getElementById('desPhone').value);
-                formData.append('address', document.getElementById('desAddress').value);
-                formData.append('designType', document.getElementById('designType').value);
-                formData.append('designDescription', document.getElementById('designDescription').value);
-                formData.append('designTimeline', document.getElementById('designTimeline').value);
-                formData.append('designDate', document.getElementById('designDate').value);
-                
-                // Add files
-                allFiles.forEach((file, index) => {
-                    formData.append(`file_${index}`, file);
-                });
-                
-                // Send to email (simulated)
-                sendToEmail(formData, 'Design Services Request');
-            }
+            // Add files
+            allFiles.forEach((file, index) => {
+                formData.append(`file_${index}`, file);
+            });
             
-            window.sendToEmail = function(formData, requestType) {
-                // Simulate sending to techprintcoreph@gmail.com
-                const emailData = {
-                    to: 'techprintcoreph@gmail.com',
-                    subject: `${requestType} - ${formData.get('fullName')}`,
-                    body: generateEmailBody(formData),
-                    attachments: Array.from(formData.entries()).filter(([key, value]) => key.startsWith('file_'))
-                };
-                
-                // Create Trello card
-                createTrelloCard(formData, requestType);
-                
-                // Show confirmation
-                alert(`Submission Confirmed!\n\nThank you for filling out the form. Here's what you can expect next:\n• Our team will review your information and respond within 1-2 business days for confirmations.\n• If your matter is urgent, please call us at 0954-176-3978.\n\nWe look forward to connecting with you again.`);
-                
-                // Close modal
-                const serviceModal = document.getElementById('serviceModal');
-                if (serviceModal) {
-                    serviceModal.style.display = 'none';
-                }
-                
-                // Reset forms
-                resetForms();
-            }
+            // Send to email (simulated)
+            sendToEmail(formData, 'Invitation Request');
+        }
+        
+        function submitDesignForm() {
+            const formData = new FormData();
+            const allFiles = [...uploadedFiles, ...capturedPhotos];
             
-            window.createTrelloCard = function(formData, requestType) {
-                // Prepare card data
-                const cardData = {
-                    name: `${requestType} - ${formData.get('fullName')}`,
-                    desc: generateTrelloDescription(formData, requestType),
-                    idList: '201qVQ6X', // TPC Projects board
-                    pos: 'top'
-                };
-                
-                // Simulate Trello card creation
-                console.log('Creating Trello card:', cardData);
-                
-                // In a real implementation, you would use Trello API:
-                // fetch('https://api.trello.com/1/cards', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify(cardData)
-                // });
-                
-                // For now, we'll simulate the card creation
-                alert(`Trello Card Created:\n\nTitle: ${cardData.name}\nDescription: ${cardData.desc}\nBoard: https://trello.com/b/201qVQ6X/tpc-projects`);
-            }
+            // Collect form data
+            formData.append('formType', 'Design Services Request');
+            formData.append('fullName', document.getElementById('desFullName').value);
+            formData.append('email', document.getElementById('desEmail').value);
+            formData.append('phone', document.getElementById('desPhone').value);
+            formData.append('address', document.getElementById('desAddress').value);
+            formData.append('designType', document.getElementById('designType').value);
+            formData.append('designDescription', document.getElementById('designDescription').value);
+            formData.append('designTimeline', document.getElementById('designTimeline').value);
+            formData.append('designDate', document.getElementById('designDate').value);
             
-            window.generateTrelloDescription = function(formData, requestType) {
-                let description = `**${requestType}**\n\n`;
-                description += `**Customer:** ${formData.get('fullName')}\n`;
-                description += `**Phone:** ${formData.get('phone') || 'Not provided'}\n`;
-                description += `**Email:** ${formData.get('email') || 'Not provided'}\n`;
-                description += `**Address:** ${formData.get('address') || 'Not provided'}\n\n`;
-                
-                if (requestType === 'Invitation Request') {
-                    description += `**Event Type:** ${formData.get('eventType')}\n`;
-                    description += `**Event Date:** ${formData.get('eventDate')}\n`;
-                    description += `**Package Size:** ${formData.get('packageSize')}\n`;
-                    description += `**Invitations:** ${formData.get('invitationsRecopies')} copies\n`;
-                    description += `**Timeline:** ${formData.get('invitationTimeline')}\n`;
-                    description += `**Expected Completion Date:** ${formData.get('invitationDate') || 'Not specified'}\n`;
-                    description += `**Design Preference:** ${formData.get('designPreference')}\n`;
-                    description += `**Event Details:** ${formData.get('eventDetails') || 'Not provided'}\n`;
-                    description += `**Special Requests:** ${formData.get('specialRequests') || 'None'}\n`;
-                } else if (requestType === 'Design Services Request') {
-                    description += `**Design Type:** ${formData.get('designType')}\n`;
-                    description += `**Timeline:** ${formData.get('designTimeline')}\n`;
-                    description += `**Expected Completion Date:** ${formData.get('designDate') || 'Not specified'}\n`;
-                    description += `**Description:** ${formData.get('designDescription') || 'Not provided'}\n`;
-                }
-                
-                description += `\n**Files Attached:** ${Array.from(formData.entries()).filter(([key, value]) => key.startsWith('file_')).length} file(s)\n`;
-                description += `\n**Submitted:** ${new Date().toLocaleString()}\n`;
-                description += `**Status:** New Request`;
-                
-                return description;
-            }
+            // Add files
+            allFiles.forEach((file, index) => {
+                formData.append(`file_${index}`, file);
+            });
             
-            window.generateEmailBody = function(formData) {
-                let body = `New ${formData.get('formType')} received:\n\n`;
-                
-                // Add all form fields to email body
-                for (let [key, value] of formData.entries()) {
-                    if (!key.startsWith('file_') && value) {
-                        body += `${key}: ${value}\n`;
-                    }
-                }
-                
-                return body;
-            }
+            // Send to email (simulated)
+            sendToEmail(formData, 'Design Services Request');
+        }
+        
+        function sendToEmail(formData, requestType) {
+            // Simulate sending from user's email to techprintcoreph@gmail.com
+            const userEmail = formData.get('email');
+            const emailData = {
+                from: userEmail,
+                to: 'techprintcoreph@gmail.com',
+                subject: `${requestType} - ${formData.get('fullName')}`,
+                body: generateEmailBody(formData),
+                attachments: Array.from(formData.entries()).filter(([key, value]) => key.startsWith('file_'))
+            };
             
-            window.resetForms = function() {
-                // Reset all form fields
-                document.querySelectorAll('input, select, textarea').forEach(field => {
-                    if (field.type !== 'submit' && field.type !== 'button') {
-                        field.value = '';
-                    }
-                });
-                
-                // Reset file arrays
-                window.uploadedFiles = [];
-                window.capturedPhotos = [];
-                
-                // Reset uploaded files display
-                const uploadedFilesDiv = document.getElementById('uploadedFiles');
-                if (uploadedFilesDiv) {
-                    uploadedFilesDiv.innerHTML = '';
+            
+            // Show confirmation
+            alert(`Submission Confirmed!\n\nThank you for filling out the form. Here's what you can expect next:\n• Our team will review your information and respond within 1-2 business days for confirmations.\n• If your matter is urgent, please call us at 0954-176-3978.\n\nWe look forward to connecting with you again.`);
+            
+            // Close modal
+            document.getElementById('serviceModal').style.display = 'none';
+            
+            // Reset forms
+            resetForms();
+        }
+        
+        
+        function generateEmailBody(formData) {
+            let body = `New ${formData.get('formType')} received:\n\n`;
+            
+            // Add all form fields to email body
+            for (let [key, value] of formData.entries()) {
+                if (!key.startsWith('file_') && value) {
+                    body += `${key}: ${value}\n`;
                 }
             }
             
-            // Mobile Menu Toggle
+            return body;
+        }
+        
+        function resetForms() {
+            // Reset all form fields
+            document.querySelectorAll('input, select, textarea').forEach(field => {
+                if (field.type !== 'submit' && field.type !== 'button') {
+                    field.value = '';
+                }
+            });
+            
+            // Reset file arrays
+            uploadedFiles = [];
+            capturedPhotos = [];
+            
+            // Reset uploaded files display
+            document.getElementById('uploadedFiles').innerHTML = '';
+        }
+        
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const mainNav = document.getElementById('mainNav');
             
@@ -1315,30 +1201,32 @@
                     });
                 });
             }
+        });
 
-            // Return to Top Button
+        // Return to Top Button
+        document.addEventListener('DOMContentLoaded', function() {
             const returnToTopBtn = document.getElementById('returnToTop');
             
-            if (returnToTopBtn) {
-                // Show/hide button based on scroll position
-                window.addEventListener('scroll', function() {
-                    if (window.pageYOffset > 300) {
-                        returnToTopBtn.classList.add('show');
-                    } else {
-                        returnToTopBtn.classList.remove('show');
-                    }
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    returnToTopBtn.classList.add('show');
+                } else {
+                    returnToTopBtn.classList.remove('show');
+                }
+            });
+            
+            // Smooth scroll to top when clicked
+            returnToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
-                
-                // Smooth scroll to top when clicked
-                returnToTopBtn.addEventListener('click', function() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
+            });
+        });
 
-            // Services Scroll Buttons
+        // Services Scroll Buttons
+        document.addEventListener('DOMContentLoaded', function() {
             const scrollLeftBtn = document.getElementById('scrollLeft');
             const scrollRightBtn = document.getElementById('scrollRight');
             const servicesGrid = document.getElementById('servicesGrid');
@@ -1375,8 +1263,10 @@
                 // Initial button state update
                 updateButtonStates();
             }
+        });
 
-            // Features Scroll Buttons
+        // Features Scroll Buttons
+        document.addEventListener('DOMContentLoaded', function() {
             const featuresScrollLeftBtn = document.getElementById('featuresScrollLeft');
             const featuresScrollRightBtn = document.getElementById('featuresScrollRight');
             const featuresGrid = document.getElementById('featuresGrid');
@@ -1413,7 +1303,7 @@
                 // Initial button state update
                 updateFeaturesButtonStates();
             }
-        }); // End of DOMContentLoaded
+        });
     </script>
 </body>
 </html>

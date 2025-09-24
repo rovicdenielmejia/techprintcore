@@ -183,7 +183,7 @@
                             <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address *</label>
+                            <label for="email">Email Address</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                     </div>
@@ -453,33 +453,6 @@ Best regards,
 TechPrint Core Contact System
                     `;
 
-                    // Create Trello card data
-                    const trelloCardData = {
-                        name: `Contact Inquiry - ${data.name}`,
-                        desc: `**New Contact Form Submission**
-
-**Personal Information:**
-- Full Name: ${data.name}
-- Email: ${data.email}
-- Phone: ${data.phone}
-
-**Inquiry Details:**
-- Subject: ${data.subject === 'other' ? data.otherSubject : data.subject}
-- Message: ${data.message}
-- Preferred Contact Method: ${data.contactMethod}
-
-**Contact Details:**
-- Submission Date: ${new Date().toLocaleDateString()}
-- Submission Time: ${new Date().toLocaleTimeString()}
-
-**Next Steps:**
-1. Review inquiry details
-2. Respond to customer within 24 hours
-3. Follow up based on preferred contact method
-4. Update inquiry status in Trello`,
-                        idList: 'ZvqWNUn5', // Trello board ID
-                        labels: ['contact-inquiry', 'new-submission']
-                    };
 
                     // Simulate form submission
                     const submitBtn = contactForm.querySelector('.btn-primary');
@@ -488,28 +461,23 @@ TechPrint Core Contact System
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
                     submitBtn.disabled = true;
                     
-                    // Send email and create Trello card
-                    sendContactInquiry(data, emailSubject, emailBody, trelloCardData, submitBtn, originalText);
+                    // Send email
+                    sendContactInquiry(data, emailSubject, emailBody, submitBtn, originalText);
                 });
             }
         });
 
         // Function to send contact inquiry
-        function sendContactInquiry(data, emailSubject, emailBody, trelloCardData, submitBtn, originalText) {
-            // Simulate email sending
-            console.log('Sending email to: techprintcoreph@gmail.com');
+        function sendContactInquiry(data, emailSubject, emailBody, submitBtn, originalText) {
+            // Simulate email sending from user's email
+            console.log('Sending email from:', data.email, 'to: techprintcoreph@gmail.com');
             console.log('Subject:', emailSubject);
             console.log('Body:', emailBody);
-
-            // Simulate Trello card creation
-            console.log('Creating Trello card on board: https://trello.com/b/ZvqWNUn5/tpc-inquiries');
-            console.log('Card Data:', trelloCardData);
 
             // Simulate API calls
             setTimeout(() => {
                 // In a real implementation, you would:
                 // 1. Send email using email service (EmailJS, Formspree, etc.)
-                // 2. Create Trello card using Trello API
                 
                 alert('Thank you for your message! We\'ll get back to you within 24 hours. Your inquiry has been submitted to our team.');
                 contactForm.reset();
