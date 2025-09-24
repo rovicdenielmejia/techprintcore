@@ -567,16 +567,37 @@ TechPrint Core Connect System
                 console.log('Body:', emailBody);
 
 
-                // Simulate API calls
-                setTimeout(() => {
-                    // In a real implementation, you would:
-                    // 1. Send email using email service (EmailJS, Formspree, etc.)
-                    
-                    alert('Thank you for signing up! We\'ll process your application and contact you within 1-2 business days to arrange pickup of your FREE loyalty card.');
-                    loyaltySignupForm.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                }, 2000);
+                // Redirect to email client
+                const emailSubject = `Loyalty Program Application - ${data.fullName}`;
+                const emailBody = `New Loyalty Program Application
+
+Personal Information:
+- Full Name: ${data.fullName}
+- Email: ${data.email}
+- Phone: ${data.phone}
+- Address: ${data.address || 'Not provided'}
+
+Referral Information:
+- How did you hear about us: ${data.referral || 'Not specified'}
+- Referrer's name: ${data.referralName || 'Not provided'}
+
+Application Details:
+- Application Date: ${new Date().toLocaleDateString()}
+- Application Time: ${new Date().toLocaleTimeString()}
+- Terms Accepted: Yes
+
+---
+This application was submitted through the TechPrint Core Connect loyalty program sign-up form.`;
+                
+                const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                
+                // Open email client
+                window.location.href = mailtoLink;
+                
+                // Reset form
+                loyaltySignupForm.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             }
         });
     </script>

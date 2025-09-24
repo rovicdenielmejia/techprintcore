@@ -474,17 +474,30 @@ TechPrint Core Contact System
             console.log('Subject:', emailSubject);
             console.log('Body:', emailBody);
 
-            // Simulate API calls
-            setTimeout(() => {
-                // In a real implementation, you would:
-                // 1. Send email using email service (EmailJS, Formspree, etc.)
-                
-                alert('Thank you for your message! We\'ll get back to you within 24 hours. Your inquiry has been submitted to our team.');
-                contactForm.reset();
-                otherSubjectGroup.style.display = 'none';
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+            // Redirect to email client
+            const emailSubject = `Contact Inquiry - ${data.subject === 'other' ? data.otherSubject : data.subject}`;
+            const emailBody = `Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone}
+Subject: ${data.subject === 'other' ? data.otherSubject : data.subject}
+Preferred Contact: ${data.contactMethod}
+
+Message:
+${data.message}
+
+---
+This inquiry was submitted through the TechPrint Core website contact form.`;
+            
+            const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Reset form
+            contactForm.reset();
+            otherSubjectGroup.style.display = 'none';
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         }
     </script>
 </body>

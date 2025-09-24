@@ -882,12 +882,38 @@
                         return;
                     }
                     
-                    // Simulate form submission
-                    console.log('Sending email from:', data.invEmail, 'to: techprintcoreph@gmail.com');
-                    console.log('Subject: Invitation Request -', data.invFullName);
-                    console.log('Form data:', data);
+                    // Redirect to email client
+                    const emailSubject = `Invitation Request - ${data.invFullName}`;
+                    const emailBody = `Invitation Request Details:
+
+Personal Information:
+- Full Name: ${data.invFullName}
+- Email: ${data.invEmail}
+- Phone: ${data.invPhone}
+- Address: ${data.invAddress}
+
+Event Details:
+- Event Type: ${data.eventType}
+- Event Date: ${data.eventDate}
+- Package Size: ${data.packageSize}
+- Number of Invitations: ${data.invitationsRecopies}
+- Event Details: ${data.eventDetails}
+
+Design Preferences:
+- Design Preference: ${data.designPreference}
+- Special Requests: ${data.specialRequests}
+
+Timeline:
+- Timeline: ${data.invitationTimeline}
+- Expected Completion Date: ${data.invitationDate}
+
+---
+This request was submitted through the TechPrint Core service design form.`;
                     
-                    alert('Submission Confirmed! Thank you for filling out the form. Here\'s what you can expect next: *Our team will review your information and respond within 1-2 business days for confirmations. *If your matter is urgent, please call us at 0954-1763-978. We look forward to connecting with you again.');
+                    const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                    
+                    // Open email client
+                    window.location.href = mailtoLink;
                     
                     // Reset form
                     this.reset();
@@ -907,12 +933,31 @@
                         return;
                     }
                     
-                    // Simulate form submission
-                    console.log('Sending email from:', data.desEmail, 'to: techprintcoreph@gmail.com');
-                    console.log('Subject: Design Services Request -', data.desFullName);
-                    console.log('Form data:', data);
+                    // Redirect to email client
+                    const emailSubject = `Design Services Request - ${data.desFullName}`;
+                    const emailBody = `Design Services Request Details:
+
+Personal Information:
+- Full Name: ${data.desFullName}
+- Email: ${data.desEmail}
+- Phone: ${data.desPhone}
+- Address: ${data.desAddress}
+
+Design Details:
+- Design Type: ${data.designType}
+- Project Description: ${data.designDescription}
+
+Timeline:
+- Timeline: ${data.designTimeline}
+- Expected Completion Date: ${data.designDate}
+
+---
+This request was submitted through the TechPrint Core service design form.`;
                     
-                    alert('Submission Confirmed! Thank you for filling out the form. Here\'s what you can expect next: *Our team will review your information and respond within 1-2 business days for confirmations. *If your matter is urgent, please call us at 0954-1763-978. We look forward to connecting with you again.');
+                    const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                    
+                    // Open email client
+                    window.location.href = mailtoLink;
                     
                     // Reset form
                     this.reset();

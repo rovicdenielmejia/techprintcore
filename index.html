@@ -1141,8 +1141,13 @@
             };
             
             
-            // Show confirmation
-            alert(`Submission Confirmed!\n\nThank you for filling out the form. Here's what you can expect next:\n• Our team will review your information and respond within 1-2 business days for confirmations.\n• If your matter is urgent, please call us at 0954-176-3978.\n\nWe look forward to connecting with you again.`);
+            // Redirect to email client
+            const emailSubject = `${requestType} - ${formData.get('fullName')}`;
+            const emailBody = generateEmailBody(formData);
+            const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
             
             // Close modal
             document.getElementById('serviceModal').style.display = 'none';
