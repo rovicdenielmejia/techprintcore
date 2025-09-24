@@ -338,6 +338,17 @@
         </div>
     </section>
 
+    <!-- Sign Up Section -->
+    <section class="signup-section">
+        <div class="container">
+            <div class="signup-content">
+                <h2>Sign up to TechPrint Core Connect</h2>
+                <p>Join our loyalty program and start earning rewards with every purchase!</p>
+                <button class="btn-primary" id="loyaltySignupBtn">Get My Free Loyalty Card</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="loyalty-contact">
         <div class="container">
@@ -348,6 +359,68 @@
             </div>
         </div>
     </section>
+
+    <!-- Loyalty Sign-up Modal -->
+    <div id="loyaltySignupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Get Your Free Loyalty Card</h2>
+                <span class="close" id="closeLoyaltyModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="loyaltySignupForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address" name="address" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="referral">How did you hear about us?</label>
+                        <select id="referral" name="referral">
+                            <option value="">Select option</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="friend">Friend/Family</option>
+                            <option value="walk-in">Walk-in</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="referralName">Referrer's name (if applicable)</label>
+                        <input type="text" id="referralName" name="referralName">
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <span class="highlight-text">Terms and Conditions</span> and <span class="highlight-text">Privacy Policy</span>
+                        </label>
+                    </div>
+                    <div class="what-happens-next">
+                        <h3>What happens next?</h3>
+                        <ol>
+                            <li>We'll process your application within 1-2 business days</li>
+                            <li>We'll send you a message when your FREE loyalty card will be ready for pickup</li>
+                            <li>Start earning stamps with your first purchase</li>
+                            <li>Start referring to be connected and rewarded</li>
+                        </ol>
+                    </div>
+                    <button type="submit" class="btn-primary">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -430,6 +503,15 @@
     </footer>
 
     <script>
+        // Loyalty Signup Modal Functions
+        function openLoyaltyModal() {
+            document.getElementById('loyaltySignupModal').style.display = 'block';
+        }
+        
+        function closeLoyaltyModal() {
+            document.getElementById('loyaltySignupModal').style.display = 'none';
+        }
+
         // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -451,6 +533,31 @@
                 });
             }
 
+
+            // Loyalty Signup Modal Functionality
+            const loyaltySignupBtn = document.getElementById('loyaltySignupBtn');
+            const loyaltyModal = document.getElementById('loyaltySignupModal');
+            const closeLoyaltyModal = document.getElementById('closeLoyaltyModal');
+            
+            if (loyaltySignupBtn && loyaltyModal) {
+                loyaltySignupBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openLoyaltyModal();
+                });
+            }
+            
+            if (closeLoyaltyModal) {
+                closeLoyaltyModal.addEventListener('click', function() {
+                    document.getElementById('loyaltySignupModal').style.display = 'none';
+                });
+            }
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === loyaltyModal) {
+                    document.getElementById('loyaltySignupModal').style.display = 'none';
+                }
+            });
 
             // Terms Modal Functionality
             const termsCheckbox = document.getElementById('terms');

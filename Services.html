@@ -677,8 +677,12 @@
             if (requestServiceBtn) {
                 requestServiceBtn.addEventListener('click', function(e) {
                     e.preventDefault();
+                    console.log('Request Service Design button clicked');
                     modal.style.display = 'block';
+                    console.log('Modal should be visible now');
                 });
+            } else {
+                console.log('Request Service Design button not found');
             }
             
             // Close modal
@@ -729,14 +733,6 @@
             // Upload Modal Functions
             let uploadedFiles = [];
             let capturedPhotosArray = [];
-            
-            function openUploadModal() {
-                document.getElementById('uploadModal').style.display = 'block';
-            }
-            
-            function closeUploadModal() {
-                document.getElementById('uploadModal').style.display = 'none';
-            }
             
             function openUploadTab(evt, tabName) {
                 const tabContents = document.getElementsByClassName('upload-tab-content');
@@ -965,6 +961,22 @@ This request was submitted through the TechPrint Core service design form.`;
                 });
             }
         });
+        
+        // Global upload functions
+        function openUploadModal() {
+            console.log('openUploadModal called');
+            const uploadModal = document.getElementById('uploadModal');
+            if (uploadModal) {
+                uploadModal.style.display = 'block';
+                console.log('Upload modal should be visible now');
+            } else {
+                console.log('Upload modal not found');
+            }
+        }
+        
+        function closeUploadModal() {
+            document.getElementById('uploadModal').style.display = 'none';
+        }
     </script>
 </body>
 </html>
