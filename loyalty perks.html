@@ -134,142 +134,16 @@
         </div>
     </section>
 
-    <!-- Sign Up Form Section -->
+    <!-- Sign Up Section -->
     <section class="signup-section">
         <div class="container">
             <div class="signup-content">
                 <h2>Sign up to TechPrint Core Connect</h2>
-                <p>Get your FREE loyalty card and start earning rewards today!</p>
-                <form class="signup-form" id="loyaltySignupForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="fullName">Full Name *</label>
-                            <input type="text" id="fullName" name="fullName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" id="address" name="address">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="referral">How did you hear about us?</label>
-                        <select id="referral" name="referral">
-                            <option value="">Select an option</option>
-                            <option value="facebook">Facebook</option>
-                            <option value="instagram">Instagram</option>
-                            <option value="friend">Friend/Family Referral</option>
-                            <option value="walk-in">Walk-in Customer</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="referralName">If referred by someone, please mention their name:</label>
-                        <input type="text" id="referralName" name="referralName" placeholder="Referrer's name (optional)">
-                    </div>
-                    
-                    <div class="form-group checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="terms" name="terms" required>
-                            <span class="checkmark"></span>
-                            <span class="checkbox-text">I agree to the <span class="highlight-text">Terms and Conditions</span> and <span class="highlight-text">Privacy Policy</span></span>
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="btn-primary signup-btn">
-                        <i class="fas fa-id-card"></i>
-                        Get My FREE Loyalty Card
-                    </button>
-                </form>
-                
-                <div class="signup-benefits">
-                    <h3>What happens next?</h3>
-                    <div class="benefits-grid">
-                        <div class="benefit-item">
-                            <i class="fas fa-clock"></i>
-                            <p>We'll process your application within 1-2 business days</p>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-envelope"></i>
-                            <p>We'll send you a message when your FREE loyalty card will be ready for pickup</p>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-star"></i>
-                            <p>Start earning stamps with your first purchase</p>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-users"></i>
-                            <p>Start referring to be connected and rewarded</p>
-                        </div>
-                    </div>
-                </div>
+                <p>Join our loyalty program and start earning rewards with every purchase!</p>
+                <button class="btn-primary" id="loyaltySignupBtn">Get My Free Loyalty Card</button>
             </div>
         </div>
     </section>
-
-    <!-- Terms Modal -->
-    <div class="modal" id="termsModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Terms & Conditions</h3>
-                <button class="modal-close" id="closeTermsModal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="reminders-modal-list">
-                    <div class="reminder-modal-item">
-                        <i class="fas fa-id-card"></i>
-                        <p><strong>Present Your Card:</strong> Always show your card when paying to get your stamps!</p>
-                    </div>
-                    <div class="reminder-modal-item">
-                        <i class="fas fa-exchange-alt"></i>
-                        <p><strong>One Reward Per Card:</strong> Once full, surrender your card to claim one reward. You'll get a new one to start over!</p>
-                    </div>
-                    <div class="reminder-modal-item">
-                        <i class="fas fa-ban"></i>
-                        <p><strong>Not for Cash:</strong> Rewards cannot be exchanged for cash.</p>
-                    </div>
-                    <div class="reminder-modal-item">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <p><strong>Lost Cards:</strong> We can't replace lost or stolen cards, so please keep it safe!</p>
-                    </div>
-                    <div class="reminder-modal-item">
-                        <i class="fas fa-percent"></i>
-                        <p><strong>Promos:</strong> This loyalty program cannot be combined with other discounts (like Senior/PWD) or promotions in the same transaction.</p>
-                    </div>
-                    <div class="reminder-modal-item">
-                        <i class="fas fa-user-lock"></i>
-                        <p><strong>Non-Transferable:</strong> This card is non-transferable and can only be used by the named person on the card.</p>
-                    </div>
-                </div>
-                <div class="modal-checkbox">
-                    <label class="modal-checkbox-label">
-                        <input type="checkbox" id="modalAgree" name="modalAgree">
-                        <span class="modal-checkmark"></span>
-                        I agree to these terms and conditions
-                    </label>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" id="cancelTerms">Cancel</button>
-                <button class="btn-primary" id="confirmTerms">I Agree</button>
-            </div>
-        </div>
-    </div>
-
 
     <!-- Referral Bonus Section -->
     <section class="referral-bonus">
@@ -338,16 +212,6 @@
         </div>
     </section>
 
-    <!-- Sign Up Section -->
-    <section class="signup-section">
-        <div class="container">
-            <div class="signup-content">
-                <h2>Sign up to TechPrint Core Connect</h2>
-                <p>Join our loyalty program and start earning rewards with every purchase!</p>
-                <button class="btn-primary" id="loyaltySignupBtn">Get My Free Loyalty Card</button>
-            </div>
-        </div>
-    </section>
 
     <!-- Contact Section -->
     <section class="loyalty-contact">
@@ -416,7 +280,7 @@
                             <li>Start referring to be connected and rewarded</li>
                         </ol>
                     </div>
-                    <button type="submit" class="btn-primary">Submit Application</button>
+                    <button type="submit" class="btn-primary" style="margin-top: 20px;">Submit Application</button>
                 </form>
             </div>
         </div>
@@ -543,7 +407,6 @@
                 });
             }
 
-
             // Loyalty Signup Modal Functionality
             const loyaltySignupBtn = document.getElementById('loyaltySignupBtn');
             const loyaltyModal = document.getElementById('loyaltySignupModal');
@@ -569,56 +432,14 @@
                 }
             });
 
-            // Terms Modal Functionality
+            // Terms Checkbox Functionality (Simple)
             const termsCheckbox = document.getElementById('terms');
-            const termsModal = document.getElementById('termsModal');
-            const closeTermsModal = document.getElementById('closeTermsModal');
-            const cancelTerms = document.getElementById('cancelTerms');
-            const confirmTerms = document.getElementById('confirmTerms');
-            const modalAgree = document.getElementById('modalAgree');
             
-            if (termsCheckbox && termsModal) {
-                // Prevent default checkbox behavior
-                termsCheckbox.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    termsModal.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
+            if (termsCheckbox) {
+                // Normal checkbox behavior - no modal
+                termsCheckbox.addEventListener('change', function() {
+                    // Just normal checkbox functionality
                 });
-                
-                // Close modal functions
-                function closeModal() {
-                    termsModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                    modalAgree.checked = false;
-                }
-                
-                closeTermsModal.addEventListener('click', closeModal);
-                cancelTerms.addEventListener('click', closeModal);
-                
-                // Click outside modal to close
-                termsModal.addEventListener('click', function(e) {
-                    if (e.target === termsModal) {
-                        closeModal();
-                    }
-                });
-                
-                // Confirm terms
-                confirmTerms.addEventListener('click', function() {
-                    if (modalAgree.checked) {
-                        termsCheckbox.checked = true;
-                        closeModal();
-                    } else {
-                        alert('Please check "I agree to these terms and conditions" to continue.');
-                    }
-                });
-                
-                // Enable/disable confirm button based on checkbox
-                modalAgree.addEventListener('change', function() {
-                    confirmTerms.disabled = !this.checked;
-                });
-                
-                // Initialize confirm button as disabled
-                confirmTerms.disabled = true;
             }
 
             // Loyalty Signup Form
@@ -638,7 +459,7 @@
                     }
                     
                     // Simulate form submission
-                    const submitBtn = loyaltySignupForm.querySelector('.signup-btn');
+                    const submitBtn = loyaltySignupForm.querySelector('button[type="submit"]');
                     const originalText = submitBtn.innerHTML;
                     
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
@@ -652,36 +473,6 @@
             // Function to send loyalty application
             function sendLoyaltyApplication(data, submitBtn, originalText) {
                 // Prepare email content
-                const emailSubject = 'New Loyalty Program Application - TechPrint Core Connect';
-                const emailBody = `
-New Loyalty Program Application
-
-Personal Information:
-- Full Name: ${data.fullName}
-- Email: ${data.email}
-- Phone: ${data.phone}
-- Address: ${data.address || 'Not provided'}
-
-Referral Information:
-- How did you hear about us: ${data.referral || 'Not specified'}
-- Referrer's name: ${data.referralName || 'Not provided'}
-
-Application Details:
-- Application Date: ${new Date().toLocaleDateString()}
-- Application Time: ${new Date().toLocaleTimeString()}
-- Terms Accepted: Yes
-
-Please process this application and prepare the loyalty card for pickup.
-
-Best regards,
-TechPrint Core Connect System
-                `;
-
-
-                // Simulate email sending from user's email
-
-
-                // Redirect to email client
                 const finalEmailSubject = `Loyalty Program Application - ${data.fullName}`;
                 const finalEmailBody = `New Loyalty Program Application
 
@@ -703,15 +494,19 @@ Application Details:
 ---
 This application was submitted through the TechPrint Core Connect loyalty program sign-up form.`;
                 
-                const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(finalEmailSubject)}&body=${encodeURIComponent(finalEmailBody)}`;
-                
                 // Open email client with universal handler
                 openEmailClient(finalEmailSubject, finalEmailBody);
+                
+                // Show success message
+                alert('Loyalty card application submitted successfully! We will contact you soon.');
                 
                 // Reset form
                 loyaltySignupForm.reset();
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
+                
+                // Close modal
+                document.getElementById('loyaltySignupModal').style.display = 'none';
             }
         });
     </script>
@@ -782,6 +577,61 @@ This application was submitted through the TechPrint Core Connect loyalty progra
             return body;
         }
         
+        // Page Transition Effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation classes to sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                if (index % 2 === 0) {
+                    section.classList.add('section-animate');
+                } else {
+                    section.classList.add('section-animate-alt');
+                }
+            });
+
+            // Add staggered animation to cards and elements
+            const cards = document.querySelectorAll('.card, .service-card, .pricing-card, .referral-card, .loyalty-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('section-animate-delay');
+            });
+
+            // Navigation link click effects
+            const navLinks = document.querySelectorAll('nav a, .btn-primary, .btn-secondary');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Add click animation
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections for scroll animations
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+
         // Return to Top Button
         document.addEventListener('DOMContentLoaded', function() {
             const returnToTopBtn = document.getElementById('returnToTop');

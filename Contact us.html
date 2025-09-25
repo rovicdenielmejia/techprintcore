@@ -510,6 +510,61 @@ This inquiry was submitted through the TechPrint Core website contact form.`;
             submitBtn.disabled = false;
         }
         
+        // Page Transition Effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation classes to sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                if (index % 2 === 0) {
+                    section.classList.add('section-animate');
+                } else {
+                    section.classList.add('section-animate-alt');
+                }
+            });
+
+            // Add staggered animation to cards and elements
+            const cards = document.querySelectorAll('.card, .service-card, .pricing-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('section-animate-delay');
+            });
+
+            // Navigation link click effects
+            const navLinks = document.querySelectorAll('nav a, .btn-primary, .btn-secondary');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Add click animation
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections for scroll animations
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+
         // Return to Top Button
         document.addEventListener('DOMContentLoaded', function() {
             const returnToTopBtn = document.getElementById('returnToTop');
