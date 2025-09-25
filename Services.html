@@ -49,8 +49,8 @@
                             <nav class="nav" id="mainNav">
                                 <ul>
                                     <li><a href="index.html">HOME</a></li>
-                                    <li><a href="about.html">ABOUT</a></li>
-                                    <li><a href="services.html" class="active">SERVICES</a></li>
+                                    <li><a href="About.html">ABOUT</a></li>
+                                    <li><a href="Services.html" class="active">SERVICES</a></li>
                                     <li><a href="Pricing.html">PRICING</a></li>
                                     <li><a href="loyalty perks.html">LOYALTY PERKS</a></li>
                                     <li><a href="Contact us.html">CONTACT US</a></li>
@@ -359,8 +359,8 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="Services.html">Services</a></li>
+                        <li><a href="About.html">About Us</a></li>
                         <li><a href="loyalty perks.html">Invitation Services</a></li>
                         <li><a href="Contact us.html">Contact Us</a></li>
                     </ul>
@@ -739,6 +739,9 @@ Timeline:
                     // Open email client
                     window.location.href = mailtoLink;
                     
+                    // Show success message
+                    alert('Service request submitted successfully! Your email client should open with the request details. Please send the email to complete your submission.');
+                    
                     // Reset form
                     this.reset();
                     modal.style.display = 'none';
@@ -783,6 +786,9 @@ Timeline:
                     
                     // Open email client
                     window.location.href = mailtoLink;
+                    
+                    // Show success message
+                    alert('Service request submitted successfully! Your email client should open with the request details. Please send the email to complete your submission.');
                     
                     // Reset form
                     this.reset();

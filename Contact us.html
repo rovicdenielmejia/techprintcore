@@ -49,7 +49,7 @@
                             <nav class="nav" id="mainNav">
                                 <ul>
                                     <li><a href="index.html">HOME</a></li>
-                                    <li><a href="about.html">ABOUT</a></li>
+                                    <li><a href="About.html">ABOUT</a></li>
                                     <li><a href="Services.html">SERVICES</a></li>
                                     <li><a href="Pricing.html">PRICING</a></li>
                                     <li><a href="loyalty perks.html">LOYALTY PERKS</a></li>
@@ -311,7 +311,7 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="Services.html">Services</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="About.html">About Us</a></li>
                         <li><a href="loyalty perks.html">Invitation Services</a></li>
                         <li><a href="Contact us.html">Contact Us</a></li>
                     </ul>
@@ -470,9 +470,6 @@ TechPrint Core Contact System
         // Function to send contact inquiry
         function sendContactInquiry(data, emailSubject, emailBody, submitBtn, originalText) {
             // Simulate email sending from user's email
-            console.log('Sending email from:', data.email, 'to: techprintcoreph@gmail.com');
-            console.log('Subject:', emailSubject);
-            console.log('Body:', emailBody);
 
             // Redirect to email client
             const emailSubject = `Contact Inquiry - ${data.subject === 'other' ? data.otherSubject : data.subject}`;
@@ -492,6 +489,9 @@ This inquiry was submitted through the TechPrint Core website contact form.`;
             
             // Open email client
             window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Contact form submitted successfully! Your email client should open with the inquiry details. Please send the email to complete your submission.');
             
             // Reset form
             contactForm.reset();
