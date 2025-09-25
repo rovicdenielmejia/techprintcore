@@ -169,64 +169,13 @@
         </div>
     </section>
 
-    <!-- Contact Form Section -->
-    <section class="contact-form-section">
+    <!-- Contact CTA Section -->
+    <section class="contact-cta-section">
         <div class="container">
-            <div class="form-container">
-                <h2>Send us a Message</h2>
-                <p>Have a project in mind? Get in touch with us and we'll provide you with a quote.</p>
-                
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <select id="subject" name="subject" required>
-                                <option value="">Select a subject</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="quote">Request a Quote</option>
-                                <option value="support">Technical Support</option>
-                                <option value="order">Order Status</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" id="otherSubjectGroup" style="display: none;">
-                        <label for="otherSubject">Please specify:</label>
-                        <input type="text" id="otherSubject" name="otherSubject" placeholder="Please specify your inquiry">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Please provide details about your inquiry..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contactMethod">Preferred Contact Method:</label>
-                        <select id="contactMethod" name="contactMethod" required>
-                            <option value="">Select preferred method</option>
-                            <option value="email" selected>Email</option>
-                            <option value="phone">Phone</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="btn-primary">Send Message</button>
-                </form>
+            <div class="cta-content">
+                <h2>Contact us</h2>
+                <p>Any questions or remarks? Have project in mind? Get in touch with us and we'll provide you with an answer or service quote.</p>
+                <button class="btn-primary" id="inquireBtn" onclick="openContactModal()" style="pointer-events: auto; position: relative; z-index: 10;">Inquire</button>
             </div>
         </div>
     </section>
@@ -287,6 +236,61 @@
             </div>
         </div>
     </section>
+
+    <!-- Contact Inquiry Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Send us a Message</h2>
+                <span class="close" id="closeContactModal" onclick="closeContactModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Have a project in mind? Get in touch with us and we'll provide you with a quote.</p>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="quote">Request a Quote</option>
+                            <option value="support">Technical Support</option>
+                            <option value="order">Order Status</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="otherSubjectGroup" style="display: none;">
+                        <label for="otherSubject">Please specify:</label>
+                        <input type="text" id="otherSubject" name="otherSubject" placeholder="Please specify your inquiry">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Please provide details about your inquiry..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMethod">Preferred Contact Method:</label>
+                        <select id="contactMethod" name="contactMethod" required>
+                            <option value="">Select preferred method</option>
+                            <option value="email" selected>Email</option>
+                            <option value="phone">Phone</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -379,6 +383,27 @@
     </button>
 
     <script>
+        // Global functions - defined first to ensure they're available
+        function openContactModal() {
+            const contactModal = document.getElementById('contactModal');
+            if (contactModal) {
+                contactModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeContactModal() {
+            const contactModal = document.getElementById('contactModal');
+            if (contactModal) {
+                contactModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        // Make functions globally available
+        window.openContactModal = openContactModal;
+        window.closeContactModal = closeContactModal;
+
         // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -399,6 +424,33 @@
                     });
                 });
             }
+
+            // Contact Modal Functionality
+            const inquireBtn = document.getElementById('inquireBtn');
+            const contactModal = document.getElementById('contactModal');
+            const closeContactModalBtn = document.getElementById('closeContactModal');
+            
+            if (inquireBtn && contactModal) {
+                inquireBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    contactModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+            
+            if (closeContactModalBtn) {
+                closeContactModalBtn.addEventListener('click', function() {
+                    contactModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === contactModal) {
+                    closeContactModal();
+                }
+            });
 
             // Contact Form Submission
             const contactForm = document.getElementById('contactForm');
@@ -482,8 +534,8 @@ TechPrint Core Contact System
             // Simulate email sending from user's email
 
             // Redirect to email client
-            const emailSubject = `Contact Inquiry - ${data.subject === 'other' ? data.otherSubject : data.subject}`;
-            const emailBody = `Name: ${data.name}
+            const finalEmailSubject = `Contact Inquiry - ${data.subject === 'other' ? data.otherSubject : data.subject}`;
+            const finalEmailBody = `Name: ${data.name}
 Email: ${data.email}
 Phone: ${data.phone}
 Subject: ${data.subject === 'other' ? data.otherSubject : data.subject}
@@ -495,10 +547,10 @@ ${data.message}
 ---
 This inquiry was submitted through the TechPrint Core website contact form.`;
             
-            const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(finalEmailSubject)}&body=${encodeURIComponent(finalEmailBody)}`;
             
             // Open email client with universal handler
-            openEmailClient(emailSubject, emailBody);
+            openEmailClient(finalEmailSubject, finalEmailBody);
             
             // Show success message
             alert('Contact form submitted successfully! Your email client should open with the inquiry details. Please send the email to complete your submission.');
@@ -508,6 +560,9 @@ This inquiry was submitted through the TechPrint Core website contact form.`;
             otherSubjectGroup.style.display = 'none';
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
+            
+            // Close modal
+            closeContactModal();
         }
         
         // Page Transition Effects
