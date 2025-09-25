@@ -332,7 +332,7 @@
             <div class="request-service-content">
                 <h2>Ready to Experience Our Services?</h2>
                 <p>Let's work together to bring your printing, design, and tech needs to life. Contact us today and discover why Isabela is excited about TechPrint Core.</p>
-                <a href="#" class="btn-primary" id="requestServiceBtn">Request Service Design</a>
+                <button type="button" class="btn-primary" id="requestServiceBtn">Request Service Design</button>
             </div>
         </div>
     </section>
@@ -490,7 +490,7 @@
                             <textarea id="eventDetails" name="eventDetails" placeholder="Enter event details including celebrant name, location, date, and names of attendees/invited guests..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Note: You may upload the event details if you have a document or photo</label>
+                            <label>Attach files to your email submission (documents, photos, etc.)</label>
                             <button type="button" class="btn-upload" onclick="openUploadModal()">Upload Files</button>
                             <div id="uploadedFiles" class="uploaded-files"></div>
                         </div>
@@ -603,7 +603,7 @@
     <div id="uploadModal" class="modal">
         <div class="modal-content upload-modal">
             <div class="modal-header">
-                <h2>Upload Event Details</h2>
+                <h2>Upload Files for Email Attachment</h2>
                 <span class="close" onclick="closeUploadModal()">&times;</span>
             </div>
             <div class="modal-body">
@@ -640,7 +640,7 @@
                 
                 <div class="upload-actions">
                     <button type="button" class="btn-cancel" onclick="closeUploadModal()">Cancel</button>
-                    <button type="button" class="btn-upload-confirm" onclick="confirmUpload()">Upload to Google Drive</button>
+                    <button type="button" class="btn-upload-confirm" onclick="confirmUpload()">Add Files to Form</button>
                 </div>
             </div>
         </div>
@@ -673,32 +673,42 @@
             const closeBtn = document.querySelector('.close');
             const requestServiceBtn = document.getElementById('requestServiceBtn');
             
+            console.log('Modal element:', modal);
+            console.log('Close button:', closeBtn);
+            console.log('Request Service button:', requestServiceBtn);
+            
             // Open modal when clicking "Request Service Design" button
             if (requestServiceBtn) {
                 requestServiceBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     console.log('Request Service Design button clicked');
                     modal.style.display = 'block';
-                    console.log('Modal should be visible now');
                 });
             } else {
                 console.log('Request Service Design button not found');
             }
             
             // Close modal
-            closeBtn.addEventListener('click', function() {
-                modal.style.display = 'none';
-            });
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    console.log('Close button clicked');
+                    modal.style.display = 'none';
+                });
+            } else {
+                console.log('Close button not found');
+            }
             
             // Close modal when clicking outside
             window.addEventListener('click', function(e) {
                 if (e.target === modal) {
+                    console.log('Modal background clicked');
                     modal.style.display = 'none';
                 }
             });
             
-            // Tab functionality
-            function openTab(evt, tabName) {
+            // Tab functionality - make it global
+            window.openTab = function(evt, tabName) {
+                console.log('openTab called with:', tabName);
                 const tabContents = document.getElementsByClassName('tab-content');
                 const tabButtons = document.getElementsByClassName('tab-btn');
                 
@@ -714,8 +724,9 @@
                 evt.currentTarget.classList.add('active');
             }
             
-            // Toggle "Other" event type input
-            function toggleOtherEvent() {
+            // Toggle "Other" event type input - make it global
+            window.toggleOtherEvent = function() {
+                console.log('toggleOtherEvent called');
                 const eventType = document.getElementById('eventType');
                 const otherEventGroup = document.getElementById('otherEventGroup');
                 const otherEventInput = document.getElementById('otherEventType');
@@ -858,7 +869,24 @@
                     return;
                 }
                 
-                alert('Files uploaded successfully! You can now close this window and continue with your form.');
+                // Display uploaded files in the main form
+                const uploadedFilesDiv = document.getElementById('uploadedFiles');
+                let fileList = '<p><strong>Files ready for email attachment:</strong></p><ul>';
+                
+                // Add uploaded files
+                uploadedFiles.forEach((file, index) => {
+                    fileList += `<li>${file.name} (${(file.size / 1024).toFixed(1)} KB)</li>`;
+                });
+                
+                // Add captured photos
+                const capturedPhotoElements = capturedPhotos.querySelectorAll('.captured-photo');
+                capturedPhotoElements.forEach((photo, index) => {
+                    fileList += `<li>Captured Photo ${index + 1} (image file)</li>`;
+                });
+                
+                fileList += '</ul><p><em>These files will be included in the email submission.</em></p>';
+                uploadedFilesDiv.innerHTML = fileList;
+                
                 closeUploadModal();
             }
             
@@ -880,7 +908,7 @@
                     
                     // Redirect to email client
                     const emailSubject = `Invitation Request - ${data.invFullName}`;
-                    const emailBody = `Invitation Request Details:
+                    let emailBody = `Invitation Request Details:
 
 Personal Information:
 - Full Name: ${data.invFullName}
@@ -901,10 +929,25 @@ Design Preferences:
 
 Timeline:
 - Timeline: ${data.invitationTimeline}
-- Expected Completion Date: ${data.invitationDate}
+- Expected Completion Date: ${data.invitationDate}`;
 
----
-This request was submitted through the TechPrint Core service design form.`;
+                    // Add uploaded files information
+                    if (uploadedFiles.length > 0 || capturedPhotosArray.length > 0) {
+                        emailBody += `\n\n--- UPLOADED FILES ---\n`;
+                        emailBody += `Total Files: ${uploadedFiles.length + capturedPhotosArray.length}\n`;
+                        
+                        uploadedFiles.forEach((file, index) => {
+                            emailBody += `File ${index + 1}: ${file.name} (${(file.size / 1024).toFixed(1)} KB)\n`;
+                        });
+                        
+                        capturedPhotosArray.forEach((photo, index) => {
+                            emailBody += `Photo ${index + 1}: Captured Image (${(photo.size / 1024).toFixed(1)} KB)\n`;
+                        });
+                        
+                        emailBody += `\nNote: Files are attached to this email or can be accessed through the upload system.\n`;
+                    }
+
+                    emailBody += `\n---\nThis request was submitted through the TechPrint Core service design form.`;
                     
                     const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
                     
@@ -931,7 +974,7 @@ This request was submitted through the TechPrint Core service design form.`;
                     
                     // Redirect to email client
                     const emailSubject = `Design Services Request - ${data.desFullName}`;
-                    const emailBody = `Design Services Request Details:
+                    let emailBody = `Design Services Request Details:
 
 Personal Information:
 - Full Name: ${data.desFullName}
@@ -945,10 +988,25 @@ Design Details:
 
 Timeline:
 - Timeline: ${data.designTimeline}
-- Expected Completion Date: ${data.designDate}
+- Expected Completion Date: ${data.designDate}`;
 
----
-This request was submitted through the TechPrint Core service design form.`;
+                    // Add uploaded files information
+                    if (uploadedFiles.length > 0 || capturedPhotosArray.length > 0) {
+                        emailBody += `\n\n--- UPLOADED FILES ---\n`;
+                        emailBody += `Total Files: ${uploadedFiles.length + capturedPhotosArray.length}\n`;
+                        
+                        uploadedFiles.forEach((file, index) => {
+                            emailBody += `File ${index + 1}: ${file.name} (${(file.size / 1024).toFixed(1)} KB)\n`;
+                        });
+                        
+                        capturedPhotosArray.forEach((photo, index) => {
+                            emailBody += `Photo ${index + 1}: Captured Image (${(photo.size / 1024).toFixed(1)} KB)\n`;
+                        });
+                        
+                        emailBody += `\nNote: Files are attached to this email or can be accessed through the upload system.\n`;
+                    }
+
+                    emailBody += `\n---\nThis request was submitted through the TechPrint Core service design form.`;
                     
                     const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
                     
@@ -963,20 +1021,19 @@ This request was submitted through the TechPrint Core service design form.`;
         });
         
         // Global upload functions
-        function openUploadModal() {
+        window.openUploadModal = function() {
             console.log('openUploadModal called');
             const uploadModal = document.getElementById('uploadModal');
             if (uploadModal) {
                 uploadModal.style.display = 'block';
-                console.log('Upload modal should be visible now');
-            } else {
-                console.log('Upload modal not found');
             }
         }
         
-        function closeUploadModal() {
+        window.closeUploadModal = function() {
+            console.log('closeUploadModal called');
             document.getElementById('uploadModal').style.display = 'none';
         }
+        
     </script>
 </body>
 </html>

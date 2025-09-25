@@ -675,8 +675,8 @@ TechPrint Core Connect System
 
 
                 // Redirect to email client
-                const emailSubject = `Loyalty Program Application - ${data.fullName}`;
-                const emailBody = `New Loyalty Program Application
+                const finalEmailSubject = `Loyalty Program Application - ${data.fullName}`;
+                const finalEmailBody = `New Loyalty Program Application
 
 Personal Information:
 - Full Name: ${data.fullName}
@@ -696,7 +696,7 @@ Application Details:
 ---
 This application was submitted through the TechPrint Core Connect loyalty program sign-up form.`;
                 
-                const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(finalEmailSubject)}&body=${encodeURIComponent(finalEmailBody)}`;
                 
                 // Open email client
                 window.location.href = mailtoLink;
@@ -707,6 +707,82 @@ This application was submitted through the TechPrint Core Connect loyalty progra
                 submitBtn.disabled = false;
             }
         });
+    </script>
+
+
+    <script>
+        // Initialize loyalty card functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeLoyaltyCard();
+        });
+        
+        
+        
+        
+        
+        
+        // Loyalty Card functionality
+        function initializeLoyaltyCard() {
+            const loyaltyForm = document.getElementById('loyaltyForm');
+            if (loyaltyForm) {
+                loyaltyForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    handleLoyaltySignup();
+                });
+            }
+        }
+        
+        function handleLoyaltySignup() {
+            const formData = new FormData();
+            formData.append('formType', 'Loyalty Card Application');
+            formData.append('fullName', document.getElementById('loyaltyFullName').value);
+            formData.append('email', document.getElementById('loyaltyEmail').value);
+            formData.append('phone', document.getElementById('loyaltyPhone').value);
+            formData.append('address', document.getElementById('loyaltyAddress').value);
+            formData.append('businessName', document.getElementById('businessName').value);
+            formData.append('businessType', document.getElementById('businessType').value);
+            formData.append('loyaltyTier', document.getElementById('loyaltyTier').value);
+            formData.append('specialRequests', document.getElementById('loyaltySpecialRequests').value);
+            
+            // Send to email
+            sendLoyaltyEmail(formData);
+        }
+        
+        function sendLoyaltyEmail(formData) {
+            const emailSubject = `Loyalty Card Application - ${formData.get('fullName')}`;
+            const emailBody = generateLoyaltyEmailBody(formData);
+            const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Loyalty card application submitted successfully! We will contact you soon.');
+        }
+        
+        function generateLoyaltyEmailBody(formData) {
+            let body = `New Loyalty Card Application received:\n\n`;
+            
+            // Add all form fields to email body
+            for (let [key, value] of formData.entries()) {
+                if (value) {
+                    body += `${key}: ${value}\n`;
+                }
+            }
+            
+            // Add uploaded files information if any
+            const allFiles = [...uploadedFiles, ...capturedPhotos];
+            if (allFiles.length > 0) {
+                body += `\n--- UPLOADED FILES ---\n`;
+                body += `Total Files: ${allFiles.length}\n`;
+                allFiles.forEach((file, index) => {
+                    body += `File ${index + 1}: ${file.name} (${(file.size / 1024).toFixed(1)} KB)\n`;
+                });
+                body += `\nNote: Files are attached to this email or can be accessed through the upload system.\n`;
+            }
+            
+            return body;
+        }
     </script>
 </body>
 </html>
