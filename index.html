@@ -633,6 +633,11 @@
         </div>
     </footer>
 
+    <!-- Chat Icon -->
+    <a href="http://m.me/techprintcore" target="_blank" class="chat-icon" title="Chat with us on Messenger">
+        <i class="fab fa-facebook-messenger"></i>
+    </a>
+
     <!-- Return to Top Button -->
     <button id="returnToTop" class="return-to-top" title="Return to Top">
         <i class="fas fa-arrow-up"></i>
@@ -911,10 +916,9 @@
         function sendToEmail(formData, requestType) {
             const emailSubject = `${requestType} - ${formData.get('fullName')}`;
             const emailBody = generateEmailBody(formData);
-            const mailtoLink = `mailto:techprintcoreph@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
             
-            // Open email client
-            window.location.href = mailtoLink;
+            // Universal email client handler
+            openEmailClient(emailSubject, emailBody);
             
             // Show success message
             alert('Service request submitted successfully! Your email client should open with the request details. Please send the email to complete your submission.');
@@ -924,6 +928,58 @@
             
             // Reset forms
             resetForms();
+        }
+        
+        // Universal email client function for all devices
+        function openEmailClient(subject, body) {
+            const email = 'techprintcoreph@gmail.com';
+            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Try different methods based on device capabilities
+            try {
+                // Method 1: Direct mailto link (works on most desktop browsers)
+                if (navigator.userAgent.indexOf('Mobile') === -1 && navigator.userAgent.indexOf('Tablet') === -1) {
+                    window.location.href = mailtoLink;
+                    return;
+                }
+                
+                // Method 2: Create temporary link and click (better for mobile)
+                const tempLink = document.createElement('a');
+                tempLink.href = mailtoLink;
+                tempLink.style.display = 'none';
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+                
+                // Fallback: Show manual instructions
+                setTimeout(() => {
+                    showEmailInstructions(subject, body, email);
+                }, 1000);
+                
+            } catch (error) {
+                // Fallback: Show manual instructions
+                showEmailInstructions(subject, body, email);
+            }
+        }
+        
+        // Show manual email instructions as fallback
+        function showEmailInstructions(subject, body, email) {
+            const instructions = `
+Email Instructions:
+1. Open your email app
+2. Create a new email
+3. To: ${email}
+4. Subject: ${subject}
+5. Copy and paste this message:
+
+${body}
+
+6. Send the email
+            `;
+            
+            if (confirm('Email client didn\'t open automatically. Would you like to see manual instructions?')) {
+                alert(instructions);
+            }
         }
         
         function generateEmailBody(formData) {

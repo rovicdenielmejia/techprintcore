@@ -287,6 +287,16 @@
         </div>
     </footer>
 
+    <!-- Chat Icon -->
+    <a href="http://m.me/techprintcore" target="_blank" class="chat-icon" title="Chat with us on Messenger">
+        <i class="fab fa-facebook-messenger"></i>
+    </a>
+
+    <!-- Return to Top Button -->
+    <button id="returnToTop" class="return-to-top" title="Return to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
         // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
@@ -334,6 +344,30 @@
                 
                 aboutFeaturesGrid.addEventListener('scroll', updateAboutFeaturesButtonStates);
                 updateAboutFeaturesButtonStates();
+            }
+        });
+        
+        // Return to Top Button
+        document.addEventListener('DOMContentLoaded', function() {
+            const returnToTopBtn = document.getElementById('returnToTop');
+            
+            if (returnToTopBtn) {
+                // Show/hide button based on scroll position
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        returnToTopBtn.classList.add('show');
+                    } else {
+                        returnToTopBtn.classList.remove('show');
+                    }
+                });
+                
+                // Smooth scroll to top when clicked
+                returnToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
             }
         });
     </script>
