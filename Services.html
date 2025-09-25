@@ -490,9 +490,7 @@
                             <textarea id="eventDetails" name="eventDetails" placeholder="Enter event details including celebrant name, location, date, and names of attendees/invited guests..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Attach files to your email submission (documents, photos, etc.)</label>
-                            <button type="button" class="btn-upload" onclick="openUploadModal()">Upload Files</button>
-                            <div id="uploadedFiles" class="uploaded-files"></div>
+                            <label><strong>File Attachments:</strong> If you have documents, photos, or event details ready, you can attach them directly when the email client opens after form submission.</label>
                         </div>
                         
                         <h3>Design Preference</h3>
@@ -592,6 +590,10 @@
                             <input type="date" id="designDate" name="designDate">
                         </div>
                         
+                        <div class="form-group">
+                            <label><strong>File Attachments:</strong> If you have documents, photos, or design references ready, you can attach them directly when the email client opens after form submission.</label>
+                        </div>
+                        
                         <button type="submit" class="btn-submit">Submit Design Request</button>
                     </form>
                 </div>
@@ -599,52 +601,6 @@
         </div>
     </div>
 
-    <!-- Upload Modal -->
-    <div id="uploadModal" class="modal">
-        <div class="modal-content upload-modal">
-            <div class="modal-header">
-                <h2>Upload Files for Email Attachment</h2>
-                <span class="close" onclick="closeUploadModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="upload-options">
-                    <div class="upload-tabs">
-                        <button class="upload-tab-btn active" onclick="openUploadTab(event, 'fileUpload')">Upload Files</button>
-                        <button class="upload-tab-btn" onclick="openUploadTab(event, 'cameraCapture')">Take Photo</button>
-                    </div>
-                    
-                    <!-- File Upload Tab -->
-                    <div id="fileUpload" class="upload-tab-content active">
-                        <div class="upload-area" id="dropZone">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Drag & drop files here or click to browse</p>
-                            <input type="file" id="fileInput" multiple accept="image/*,.pdf,.doc,.docx" style="display: none;">
-                            <button type="button" class="btn-browse" onclick="document.getElementById('fileInput').click()">Browse Files</button>
-                        </div>
-                        <div class="file-list" id="fileList"></div>
-                    </div>
-                    
-                    <!-- Camera Capture Tab -->
-                    <div id="cameraCapture" class="upload-tab-content">
-                        <div class="camera-container">
-                            <video id="cameraVideo" autoplay></video>
-                            <canvas id="cameraCanvas" style="display: none;"></canvas>
-                            <div class="camera-controls">
-                                <button type="button" class="btn-capture" id="captureBtn">Capture Photo</button>
-                                <button type="button" class="btn-start-camera" id="startCameraBtn">Start Camera</button>
-                            </div>
-                            <div class="captured-photos" id="capturedPhotos"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="upload-actions">
-                    <button type="button" class="btn-cancel" onclick="closeUploadModal()">Cancel</button>
-                    <button type="button" class="btn-upload-confirm" onclick="confirmUpload()">Add Files to Form</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         // Mobile Menu Toggle
@@ -673,42 +629,33 @@
             const closeBtn = document.querySelector('.close');
             const requestServiceBtn = document.getElementById('requestServiceBtn');
             
-            console.log('Modal element:', modal);
-            console.log('Close button:', closeBtn);
-            console.log('Request Service button:', requestServiceBtn);
             
             // Open modal when clicking "Request Service Design" button
             if (requestServiceBtn) {
                 requestServiceBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    console.log('Request Service Design button clicked');
                     modal.style.display = 'block';
                 });
             } else {
-                console.log('Request Service Design button not found');
             }
             
             // Close modal
             if (closeBtn) {
                 closeBtn.addEventListener('click', function() {
-                    console.log('Close button clicked');
                     modal.style.display = 'none';
                 });
             } else {
-                console.log('Close button not found');
             }
             
             // Close modal when clicking outside
             window.addEventListener('click', function(e) {
                 if (e.target === modal) {
-                    console.log('Modal background clicked');
                     modal.style.display = 'none';
                 }
             });
             
             // Tab functionality - make it global
             window.openTab = function(evt, tabName) {
-                console.log('openTab called with:', tabName);
                 const tabContents = document.getElementsByClassName('tab-content');
                 const tabButtons = document.getElementsByClassName('tab-btn');
                 
@@ -726,7 +673,6 @@
             
             // Toggle "Other" event type input - make it global
             window.toggleOtherEvent = function() {
-                console.log('toggleOtherEvent called');
                 const eventType = document.getElementById('eventType');
                 const otherEventGroup = document.getElementById('otherEventGroup');
                 const otherEventInput = document.getElementById('otherEventType');
@@ -741,154 +687,7 @@
                 }
             }
             
-            // Upload Modal Functions
-            let uploadedFiles = [];
-            let capturedPhotosArray = [];
             
-            function openUploadTab(evt, tabName) {
-                const tabContents = document.getElementsByClassName('upload-tab-content');
-                const tabButtons = document.getElementsByClassName('upload-tab-btn');
-                
-                for (let i = 0; i < tabContents.length; i++) {
-                    tabContents[i].classList.remove('active');
-                }
-                
-                for (let i = 0; i < tabButtons.length; i++) {
-                    tabButtons[i].classList.remove('active');
-                }
-                
-                document.getElementById(tabName).classList.add('active');
-                evt.currentTarget.classList.add('active');
-            }
-            
-            // File upload functionality
-            const dropZone = document.getElementById('dropZone');
-            const fileInput = document.getElementById('fileInput');
-            const fileList = document.getElementById('fileList');
-            
-            if (dropZone && fileInput) {
-                dropZone.addEventListener('click', () => fileInput.click());
-                
-                dropZone.addEventListener('dragover', (e) => {
-                    e.preventDefault();
-                    dropZone.classList.add('drag-over');
-                });
-                
-                dropZone.addEventListener('dragleave', () => {
-                    dropZone.classList.remove('drag-over');
-                });
-                
-                dropZone.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    dropZone.classList.remove('drag-over');
-                    handleFiles(e.dataTransfer.files);
-                });
-                
-                fileInput.addEventListener('change', (e) => {
-                    handleFiles(e.target.files);
-                });
-            }
-            
-            function handleFiles(files) {
-                Array.from(files).forEach(file => {
-                    if (file.type.startsWith('image/') || file.type === 'application/pdf' || 
-                        file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-                        uploadedFiles.push(file);
-                        displayFile(file);
-                    }
-                });
-            }
-            
-            function displayFile(file) {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.innerHTML = `
-                    <span class="file-name">${file.name}</span>
-                    <span class="file-size">${(file.size / 1024).toFixed(1)} KB</span>
-                    <button type="button" class="btn-remove" onclick="removeFile('${file.name}')">×</button>
-                `;
-                fileList.appendChild(fileItem);
-            }
-            
-            function removeFile(fileName) {
-                uploadedFiles = uploadedFiles.filter(file => file.name !== fileName);
-                const fileItems = fileList.querySelectorAll('.file-item');
-                fileItems.forEach(item => {
-                    if (item.querySelector('.file-name').textContent === fileName) {
-                        item.remove();
-                    }
-                });
-            }
-            
-            // Camera functionality
-            let stream = null;
-            const startCameraBtn = document.getElementById('startCameraBtn');
-            const captureBtn = document.getElementById('captureBtn');
-            const cameraVideo = document.getElementById('cameraVideo');
-            const cameraCanvas = document.getElementById('cameraCanvas');
-            const capturedPhotos = document.getElementById('capturedPhotos');
-            
-            if (startCameraBtn) {
-                startCameraBtn.addEventListener('click', async () => {
-                    try {
-                        stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                        cameraVideo.srcObject = stream;
-                        startCameraBtn.style.display = 'none';
-                        captureBtn.style.display = 'inline-block';
-                    } catch (err) {
-                        alert('Camera access denied or not available');
-                    }
-                });
-            }
-            
-            if (captureBtn) {
-                captureBtn.addEventListener('click', () => {
-                    const context = cameraCanvas.getContext('2d');
-                    cameraCanvas.width = cameraVideo.videoWidth;
-                    cameraCanvas.height = cameraVideo.videoHeight;
-                    context.drawImage(cameraVideo, 0, 0);
-                    
-                    const imageData = cameraCanvas.toDataURL('image/png');
-                    capturedPhotos.innerHTML += `
-                        <div class="captured-photo">
-                            <img src="${imageData}" alt="Captured photo">
-                            <button type="button" class="btn-remove" onclick="removePhoto(this)">×</button>
-                        </div>
-                    `;
-                    capturedPhotos.style.display = 'block';
-                });
-            }
-            
-            function removePhoto(button) {
-                button.parentElement.remove();
-            }
-            
-            function confirmUpload() {
-                if (uploadedFiles.length === 0 && capturedPhotos.children.length === 0) {
-                    alert('Please upload files or take photos first');
-                    return;
-                }
-                
-                // Display uploaded files in the main form
-                const uploadedFilesDiv = document.getElementById('uploadedFiles');
-                let fileList = '<p><strong>Files ready for email attachment:</strong></p><ul>';
-                
-                // Add uploaded files
-                uploadedFiles.forEach((file, index) => {
-                    fileList += `<li>${file.name} (${(file.size / 1024).toFixed(1)} KB)</li>`;
-                });
-                
-                // Add captured photos
-                const capturedPhotoElements = capturedPhotos.querySelectorAll('.captured-photo');
-                capturedPhotoElements.forEach((photo, index) => {
-                    fileList += `<li>Captured Photo ${index + 1} (image file)</li>`;
-                });
-                
-                fileList += '</ul><p><em>These files will be included in the email submission.</em></p>';
-                uploadedFilesDiv.innerHTML = fileList;
-                
-                closeUploadModal();
-            }
             
             // Form submissions
             const invitationForm = document.querySelector('#invitationForm .service-form');
@@ -931,21 +730,7 @@ Timeline:
 - Timeline: ${data.invitationTimeline}
 - Expected Completion Date: ${data.invitationDate}`;
 
-                    // Add uploaded files information
-                    if (uploadedFiles.length > 0 || capturedPhotosArray.length > 0) {
-                        emailBody += `\n\n--- UPLOADED FILES ---\n`;
-                        emailBody += `Total Files: ${uploadedFiles.length + capturedPhotosArray.length}\n`;
-                        
-                        uploadedFiles.forEach((file, index) => {
-                            emailBody += `File ${index + 1}: ${file.name} (${(file.size / 1024).toFixed(1)} KB)\n`;
-                        });
-                        
-                        capturedPhotosArray.forEach((photo, index) => {
-                            emailBody += `Photo ${index + 1}: Captured Image (${(photo.size / 1024).toFixed(1)} KB)\n`;
-                        });
-                        
-                        emailBody += `\nNote: Files are attached to this email or can be accessed through the upload system.\n`;
-                    }
+                    emailBody += `\nNote: If you have any documents, photos, or event details to attach, please include them with this email.\n`;
 
                     emailBody += `\n---\nThis request was submitted through the TechPrint Core service design form.`;
                     
@@ -990,21 +775,7 @@ Timeline:
 - Timeline: ${data.designTimeline}
 - Expected Completion Date: ${data.designDate}`;
 
-                    // Add uploaded files information
-                    if (uploadedFiles.length > 0 || capturedPhotosArray.length > 0) {
-                        emailBody += `\n\n--- UPLOADED FILES ---\n`;
-                        emailBody += `Total Files: ${uploadedFiles.length + capturedPhotosArray.length}\n`;
-                        
-                        uploadedFiles.forEach((file, index) => {
-                            emailBody += `File ${index + 1}: ${file.name} (${(file.size / 1024).toFixed(1)} KB)\n`;
-                        });
-                        
-                        capturedPhotosArray.forEach((photo, index) => {
-                            emailBody += `Photo ${index + 1}: Captured Image (${(photo.size / 1024).toFixed(1)} KB)\n`;
-                        });
-                        
-                        emailBody += `\nNote: Files are attached to this email or can be accessed through the upload system.\n`;
-                    }
+                    emailBody += `\nNote: If you have any documents, photos, or event details to attach, please include them with this email.\n`;
 
                     emailBody += `\n---\nThis request was submitted through the TechPrint Core service design form.`;
                     
@@ -1020,19 +791,6 @@ Timeline:
             }
         });
         
-        // Global upload functions
-        window.openUploadModal = function() {
-            console.log('openUploadModal called');
-            const uploadModal = document.getElementById('uploadModal');
-            if (uploadModal) {
-                uploadModal.style.display = 'block';
-            }
-        }
-        
-        window.closeUploadModal = function() {
-            console.log('closeUploadModal called');
-            document.getElementById('uploadModal').style.display = 'none';
-        }
         
     </script>
 </body>

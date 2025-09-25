@@ -711,9 +711,7 @@
                             <textarea id="eventDetails" name="eventDetails" placeholder="Enter event details including celebrant name, location, date, and names of attendees/invited guests..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Attach files to your email submission (documents, photos, etc.)</label>
-                            <button type="button" class="btn-upload" onclick="openUploadModal()">Upload Files</button>
-                            <div id="uploadedFiles" class="uploaded-files"></div>
+                            <label><strong>File Attachments:</strong> If you have documents, photos, or event details ready, you can attach them directly when the email client opens after form submission.</label>
                         </div>
                         
                         <h3>Design Preference</h3>
@@ -813,6 +811,10 @@
                             <input type="date" id="designDate" name="designDate">
                         </div>
                         
+                        <div class="form-group">
+                            <label><strong>File Attachments:</strong> If you have documents, photos, or design references ready, you can attach them directly when the email client opens after form submission.</label>
+                        </div>
+                        
                         <button type="submit" class="btn-submit">Submit Design Request</button>
                     </form>
                 </div>
@@ -820,52 +822,6 @@
         </div>
     </div>
 
-    <!-- Upload Modal -->
-    <div id="uploadModal" class="modal">
-        <div class="modal-content upload-modal">
-            <div class="modal-header">
-                <h2>Upload Files for Email Attachment</h2>
-                <span class="close" onclick="closeUploadModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="upload-options">
-                    <div class="upload-tabs">
-                        <button class="upload-tab-btn active" onclick="openUploadTab(event, 'fileUpload')">Upload Files</button>
-                        <button class="upload-tab-btn" onclick="openUploadTab(event, 'cameraCapture')">Take Photo</button>
-                    </div>
-                    
-                    <!-- File Upload Tab -->
-                    <div id="fileUpload" class="upload-tab-content active">
-                        <div class="upload-area" id="dropZone">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Drag & drop files here or click to browse</p>
-                            <input type="file" id="fileInput" multiple accept="image/*,.pdf,.doc,.docx" style="display: none;">
-                            <button type="button" class="btn-browse" onclick="document.getElementById('fileInput').click()">Browse Files</button>
-                        </div>
-                        <div class="file-list" id="fileList"></div>
-                    </div>
-                    
-                    <!-- Camera Capture Tab -->
-                    <div id="cameraCapture" class="upload-tab-content">
-                        <div class="camera-container">
-                            <video id="cameraVideo" autoplay></video>
-                            <canvas id="cameraCanvas" style="display: none;"></canvas>
-                            <div class="camera-controls">
-                                <button type="button" class="btn-capture" id="captureBtn">Capture Photo</button>
-                                <button type="button" class="btn-start-camera" id="startCameraBtn">Start Camera</button>
-                            </div>
-                            <div class="captured-photos" id="capturedPhotos"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="upload-actions">
-                    <button type="button" class="btn-cancel" onclick="closeUploadModal()">Cancel</button>
-                    <button type="button" class="btn-upload-confirm" onclick="confirmUpload()">Add Files to Form</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <script>
@@ -912,7 +868,6 @@
         // Form submission functions
         function submitInvitationForm() {
             const formData = new FormData();
-            const allFiles = [...uploadedFiles, ...capturedPhotos];
             
             // Collect form data
             formData.append('formType', 'Invitation Request');
@@ -931,18 +886,12 @@
             formData.append('designPreference', document.getElementById('designPreference').value);
             formData.append('specialRequests', document.getElementById('specialRequests').value);
             
-            // Add files
-            allFiles.forEach((file, index) => {
-                formData.append(`file_${index}`, file);
-            });
-            
             // Send to email
             sendToEmail(formData, 'Invitation Request');
         }
         
         function submitDesignForm() {
             const formData = new FormData();
-            const allFiles = [...uploadedFiles, ...capturedPhotos];
             
             // Collect form data
             formData.append('formType', 'Design Services Request');
@@ -954,11 +903,6 @@
             formData.append('designDescription', document.getElementById('designDescription').value);
             formData.append('designTimeline', document.getElementById('designTimeline').value);
             formData.append('designDate', document.getElementById('designDate').value);
-            
-            // Add files
-            allFiles.forEach((file, index) => {
-                formData.append(`file_${index}`, file);
-            });
             
             // Send to email
             sendToEmail(formData, 'Design Services Request');
@@ -989,16 +933,7 @@
                 }
             }
             
-            // Add uploaded files information
-            const allFiles = [...uploadedFiles, ...capturedPhotos];
-            if (allFiles.length > 0) {
-                body += `\n--- UPLOADED FILES ---\n`;
-                body += `Total Files: ${allFiles.length}\n`;
-                allFiles.forEach((file, index) => {
-                    body += `File ${index + 1}: ${file.name} (${(file.size / 1024).toFixed(1)} KB)\n`;
-                });
-                body += `\nNote: Files are attached to this email or can be accessed through the upload system.\n`;
-            }
+            body += `\nNote: If you have any documents, photos, or event details to attach, please include them with this email.\n`;
             
             return body;
         }
@@ -1010,13 +945,6 @@
                     field.value = '';
                 }
             });
-            
-            // Reset file arrays
-            uploadedFiles = [];
-            capturedPhotos = [];
-            
-            // Reset uploaded files display
-            document.getElementById('uploadedFiles').innerHTML = '';
         }
         
         // Close modal
@@ -1064,138 +992,7 @@
             }
         }
         
-        // Upload Modal Functions
-        let uploadedFiles = [];
-        let capturedPhotos = [];
         
-        function openUploadModal() {
-            document.getElementById('uploadModal').style.display = 'block';
-        }
-        
-        function closeUploadModal() {
-            document.getElementById('uploadModal').style.display = 'none';
-        }
-        
-        function openUploadTab(evt, tabName) {
-            const tabContents = document.getElementsByClassName('upload-tab-content');
-            const tabButtons = document.getElementsByClassName('upload-tab-btn');
-            
-            for (let i = 0; i < tabContents.length; i++) {
-                tabContents[i].classList.remove('active');
-            }
-            
-            for (let i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove('active');
-            }
-            
-            document.getElementById(tabName).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-        
-        // File upload handling
-        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
-        
-        function handleFileSelect(event) {
-            const files = event.target.files;
-            for (let i = 0; i < files.length; i++) {
-                uploadedFiles.push(files[i]);
-            }
-            displayFiles();
-        }
-        
-        function displayFiles() {
-            const fileList = document.getElementById('fileList');
-            fileList.innerHTML = '';
-            
-            uploadedFiles.forEach((file, index) => {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.innerHTML = `
-                    <span>${file.name}</span>
-                    <button type="button" onclick="removeFile(${index})" class="btn-remove">×</button>
-                `;
-                fileList.appendChild(fileItem);
-            });
-        }
-        
-        function removeFile(index) {
-            uploadedFiles.splice(index, 1);
-            displayFiles();
-        }
-        
-        // Camera functionality
-        let stream = null;
-        
-        document.getElementById('startCameraBtn').addEventListener('click', startCamera);
-        document.getElementById('captureBtn').addEventListener('click', capturePhoto);
-        
-        function startCamera() {
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then(function(mediaStream) {
-                    stream = mediaStream;
-                    document.getElementById('cameraVideo').srcObject = stream;
-                    document.getElementById('startCameraBtn').style.display = 'none';
-                    document.getElementById('captureBtn').style.display = 'inline-block';
-                })
-                .catch(function(err) {
-                    alert('Camera access denied: ' + err);
-                });
-        }
-        
-        function capturePhoto() {
-            const video = document.getElementById('cameraVideo');
-            const canvas = document.getElementById('cameraCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            ctx.drawImage(video, 0, 0);
-            
-            canvas.toBlob(function(blob) {
-                const file = new File([blob], 'captured-photo-' + Date.now() + '.jpg', { type: 'image/jpeg' });
-                capturedPhotos.push(file);
-                displayCapturedPhotos();
-            }, 'image/jpeg');
-        }
-        
-        function displayCapturedPhotos() {
-            const container = document.getElementById('capturedPhotos');
-            container.innerHTML = '';
-            
-            capturedPhotos.forEach((photo, index) => {
-                const photoItem = document.createElement('div');
-                photoItem.className = 'captured-photo-item';
-                photoItem.innerHTML = `
-                    <img src="${URL.createObjectURL(photo)}" alt="Captured Photo">
-                    <button type="button" onclick="removeCapturedPhoto(${index})" class="btn-remove">×</button>
-                `;
-                container.appendChild(photoItem);
-            });
-        }
-        
-        function removeCapturedPhoto(index) {
-            capturedPhotos.splice(index, 1);
-            displayCapturedPhotos();
-        }
-        
-        function confirmUpload() {
-            const allFiles = [...uploadedFiles, ...capturedPhotos];
-            if (allFiles.length === 0) {
-                alert('Please select or capture at least one file.');
-                return;
-            }
-            
-            // Display uploaded files in the main form
-            const uploadedFilesDiv = document.getElementById('uploadedFiles');
-            let fileList = '<p><strong>Files ready for email attachment:</strong></p><ul>';
-            allFiles.forEach((file, index) => {
-                fileList += `<li>${file.name} (${(file.size / 1024).toFixed(1)} KB)</li>`;
-            });
-            fileList += '</ul><p><em>These files will be included in the email submission.</em></p>';
-            uploadedFilesDiv.innerHTML = fileList;
-            
-            closeUploadModal();
-        }
         
         // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {

@@ -770,16 +770,7 @@ This application was submitted through the TechPrint Core Connect loyalty progra
                 }
             }
             
-            // Add uploaded files information if any
-            const allFiles = [...uploadedFiles, ...capturedPhotos];
-            if (allFiles.length > 0) {
-                body += `\n--- UPLOADED FILES ---\n`;
-                body += `Total Files: ${allFiles.length}\n`;
-                allFiles.forEach((file, index) => {
-                    body += `File ${index + 1}: ${file.name} (${(file.size / 1024).toFixed(1)} KB)\n`;
-                });
-                body += `\nNote: Files are attached to this email or can be accessed through the upload system.\n`;
-            }
+            body += `\nNote: If you have any documents, photos, or additional information to attach, please include them with this email.\n`;
             
             return body;
         }

@@ -8,7 +8,8 @@ A modern, responsive website for TechPrint Core - a professional printing, desig
 - **Modern UI/UX** - Dark theme with red accents and glass-morphism effects
 - **Interactive Forms** - Contact form with email integration
 - **Loyalty Program** - Complete loyalty card system with sign-up functionality
-- **Service Pages** - Comprehensive service offerings and pricing
+- **Service Design Requests** - Comprehensive modal forms for design services
+- **File Attachment Support** - Clear instructions for email-based file attachments
 - **Contact Integration** - Multiple contact methods with social media links
 
 ## Pages
@@ -33,6 +34,49 @@ A modern, responsive website for TechPrint Core - a professional printing, desig
 - **Contact Form** - Sends emails to `techprintcoreph@gmail.com`
 - **Loyalty Sign-up** - Sends applications to `techprintcoreph@gmail.com`
 - **Service Design Requests** - Comprehensive modal forms for design services
+- **File Attachments** - Users can attach files directly via email client
+- **Email-based Workflow** - All forms use standard email submission process
+
+## Recent Updates
+
+### File Attachment System
+- **Simplified Upload Process** - Removed complex upload modals for better user experience
+- **Email-based Attachments** - Users attach files directly through their email client
+- **Clear Instructions** - Both Invitation Request and Design Services forms include file attachment guidance
+- **Professional Workflow** - Standard business email attachment process
+
+### Code Cleanup
+- **Removed Upload Functionality** - Eliminated complex upload JavaScript and CSS
+- **Cleaned Console Logs** - Removed debugging statements for production readiness
+- **Optimized CSS** - Removed unused upload-related styles (200+ lines cleaned)
+- **Consistent Email Integration** - All forms use `techprintcoreph@gmail.com`
+
+### User Experience Improvements
+- **Streamlined Forms** - Cleaner interface without upload complexity
+- **Better File Handling** - No file size limitations or technical barriers
+- **Clear Guidance** - Users understand exactly how to attach files
+- **Professional Presentation** - Standard email workflow familiar to all users
+
+## File Attachment Process
+
+### How It Works
+1. **User fills out form** - Complete all required fields
+2. **Form submission** - Generates email with all details
+3. **Email client opens** - Pre-filled with form data
+4. **User attaches files** - Manually attach any supporting documents
+5. **Email sent** - Delivered to `techprintcoreph@gmail.com`
+
+### Supported File Types
+- **Documents** - PDF, DOC, DOCX files
+- **Images** - JPG, PNG, GIF files
+- **Design References** - Logo files, inspiration images
+- **Event Details** - Guest lists, venue photos, theme references
+
+### Benefits
+- **No file size limits** - Standard email attachment limits apply
+- **Familiar process** - Users know how to attach files to emails
+- **Direct control** - Users manage their own file attachments
+- **Professional workflow** - Standard business communication method
 
 ## Deployment
 
@@ -48,19 +92,28 @@ This website is ready for deployment on any web hosting service that supports st
 
 ```
 /
-├── index.html              # Homepage
-├── about.html              # About page
-├── Services.html           # Services page
+├── index.html              # Homepage with service design modals
+├── About.html              # About page
+├── Services.html           # Services page with design request forms
 ├── Pricing.html            # Pricing page
 ├── loyalty perks.html      # Loyalty program page
 ├── Contact us.html         # Contact page
-├── styles.css              # Main stylesheet
+├── styles.css              # Main stylesheet (optimized, upload styles removed)
 ├── trace.svg               # Logo file
 ├── interior.jpg            # Interior image
 ├── Loyalty Card/           # Loyalty card images
-│   └── Mock Up/            # Mock-up images
+│   └── TPC Connect Loyalty Card/
+│       ├── 2.png
+│       └── Front Page.png
 └── README.md               # This file
 ```
+
+### Key Features by File
+- **index.html** - Homepage with service design request modals
+- **Services.html** - Dedicated services page with design request forms
+- **loyalty perks.html** - Loyalty program signup and terms
+- **Contact us.html** - Contact form and business information
+- **styles.css** - Optimized CSS with upload functionality removed
 
 ## Contact Information
 
