@@ -116,4 +116,4 @@ For technical support or questions about deployment:
 
 ## License
 
-© 2024 TechPrint Core. All Rights Reserved.
+© 2025 TechPrint Core. All Rights Reserved.
