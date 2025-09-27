@@ -6,11 +6,13 @@ A modern, responsive website for TechPrint Core - a professional printing, desig
 
 - **Responsive Design** - Optimized for desktop, tablet, and mobile devices
 - **Modern UI/UX** - Dark theme with red accents and glass-morphism effects
+- **Interactive Chatbot** - JotForm chatbot widget for immediate customer support
 - **Interactive Forms** - Contact form with email integration
 - **Loyalty Program** - Complete loyalty card system with sign-up functionality
 - **Service Design Requests** - Comprehensive modal forms for design services
 - **File Attachment Support** - Clear instructions for email-based file attachments
 - **Contact Integration** - Multiple contact methods with social media links
+- **Enhanced Navigation** - Back to top button positioned in lower left corner
 
 ## Pages
 
@@ -39,6 +41,12 @@ A modern, responsive website for TechPrint Core - a professional printing, desig
 
 ## Recent Updates
 
+### Latest Changes (January 2025)
+- **Chatbot Integration** - Replaced Facebook Messenger links with JotForm chatbot widget across all pages
+- **Back to Top Button** - Repositioned from lower right to lower left corner for better user experience
+- **Enhanced Customer Support** - Interactive chatbot provides immediate customer assistance
+- **Improved Navigation** - Back to top button now positioned in lower left for easier access
+
 ### File Attachment System
 - **Simplified Upload Process** - Removed complex upload modals for better user experience
 - **Email-based Attachments** - Users attach files directly through their email client
@@ -50,8 +58,8 @@ A modern, responsive website for TechPrint Core - a professional printing, desig
 - **Cleaned Console Logs** - Removed debugging statements for production readiness
 
 ### Navigation & User Experience
-- **Chat Icon Integration** - Facebook Messenger chat icon on all pages (http://m.me/techprintcore)
-- **Back to Top Functionality** - Smooth scroll to top button on all pages
+- **Chatbot Integration** - JotForm chatbot widget on all pages for interactive customer support
+- **Back to Top Functionality** - Smooth scroll to top button positioned in lower left corner
 - **Universal Email Client** - Cross-device email compatibility for all form submissions
 - **Consistent Navigation** - Proper file path capitalization across all pages
 - **Terms & Conditions** - Simplified checkbox functionality without modal popup
