@@ -5418,3 +5418,146 @@ nav a:hover {
     background: rgba(255, 68, 68, 0.3);
     color: #ffffff;
 }
+
+/* Promotional Products Section */
+.promotional-products {
+    padding: 4rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.promotional-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.promotional-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #ff4444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.promotional-header p {
+    font-size: 1.1rem;
+    color: #cccccc;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.promotional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.promotional-item {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.promotional-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(255, 68, 68, 0.2);
+    border-color: rgba(255, 68, 68, 0.3);
+}
+
+.promotional-image {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.promotional-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 250px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.promotional-item:hover .promotional-image img {
+    transform: scale(1.05);
+}
+
+.promotional-info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.promotional-info p {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.contact-pricing {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 68, 68, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 68, 68, 0.2);
+}
+
+.contact-pricing span {
+    color: #ff4444;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Responsive Design for Promotional Products */
+@media (max-width: 768px) {
+    .promotional-products {
+        padding: 3rem 0;
+    }
+    
+    .promotional-header h2 {
+        font-size: 2rem;
+    }
+    
+    .promotional-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .promotional-item {
+        padding: 1.5rem;
+    }
+    
+    .promotional-image img {
+        max-height: 200px;
+    }
+    
+    .promotional-info h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .promotional-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .promotional-item {
+        padding: 1.2rem;
+    }
+    
+    .promotional-image img {
+        max-height: 180px;
+    }
+}

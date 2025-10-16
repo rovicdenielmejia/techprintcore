@@ -372,6 +372,57 @@
         </div>
     </section>
 
+    <!-- Promotional Products Section -->
+    <section class="promotional-products">
+        <div class="container">
+            <div class="promotional-header">
+                <h2>Promotional Products</h2>
+                <p>Quality promotional items for your business needs</p>
+            </div>
+            
+            <div class="promotional-grid">
+                <div class="promotional-item">
+                    <div class="promotional-image">
+                        <img src="Acrylic Keyring.png" alt="Acrylic Keyring" loading="lazy">
+                    </div>
+                    <div class="promotional-info">
+                        <h3>Acrylic Keyring</h3>
+                        <p>Custom acrylic keyrings with your logo or design. Perfect for branding and promotional giveaways.</p>
+                        <div class="contact-pricing">
+                            <span>Contact us for pricing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="promotional-item">
+                    <div class="promotional-image">
+                        <img src="COMMERCIAL CALENDAR Price .png" alt="Commercial Calendar" loading="lazy">
+                    </div>
+                    <div class="promotional-info">
+                        <h3>Commercial Calendar</h3>
+                        <p>Professional commercial calendars with custom branding. Great for client gifts and office use.</p>
+                        <div class="contact-pricing">
+                            <span>Contact us for pricing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="promotional-item">
+                    <div class="promotional-image">
+                        <img src="Ref Magnet.png" alt="Refrigerator Magnet" loading="lazy">
+                    </div>
+                    <div class="promotional-info">
+                        <h3>Refrigerator Magnet</h3>
+                        <p>High-quality refrigerator magnets for effective advertising. Durable and eye-catching promotional materials.</p>
+                        <div class="contact-pricing">
+                            <span>Contact us for pricing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer" style="margin-top: 4rem;">
         <div class="container">
@@ -454,6 +505,28 @@
 
     <!-- Chatbot Script -->
     <script src='https://cdn.jotfor.ms/agent/embedjs/01998af69764716896d755186c955ea5e6db/embed.js'>
+    </script>
+    
+    <!-- Chatbot Restart Configuration -->
+    <script>
+        // Chatbot restart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for chatbot to load
+            setTimeout(function() {
+                // Listen for conversation end events
+                if (window.JotFormAgent) {
+                    // Reset chatbot after conversation ends
+                    window.JotFormAgent.on('conversation:end', function() {
+                        setTimeout(function() {
+                            // Restart the chatbot widget
+                            if (window.JotFormAgent && window.JotFormAgent.reset) {
+                                window.JotFormAgent.reset();
+                            }
+                        }, 2000); // Wait 2 seconds before restarting
+                    });
+                }
+            }, 3000); // Wait 3 seconds for chatbot to fully load
+        });
     </script>
 
     <!-- Return to Top Button -->
