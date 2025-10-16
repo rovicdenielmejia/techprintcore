@@ -1246,7 +1246,7 @@ body {
 }
 
 /* Enhanced Card Styling */
-.service-card, .loyalty-card, .value-card, .contact-card, .offer-card, .points-card, .tier-card, .faq-item {
+.service-card, .loyalty-card, .value-card, .contact-card, .points-card, .tier-card, .faq-item {
     position: relative;
     overflow: hidden;
     opacity: 0;
@@ -1274,7 +1274,7 @@ body {
     }
 }
 
-.service-card:hover, .loyalty-card:hover, .value-card:hover, .contact-card:hover, .offer-card:hover, .points-card:hover, .tier-card:hover, .faq-item:hover {
+.service-card:hover, .loyalty-card:hover, .value-card:hover, .contact-card:hover, .points-card:hover, .tier-card:hover, .faq-item:hover {
     border-color: rgba(255, 68, 68, 0.5);
 }
 
@@ -1564,187 +1564,6 @@ body {
     }
 }
 
-/* Special Offers Section */
-.special-offers {
-    padding: 2rem 0;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d1b1b 100%);
-}
-
-.offers-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.offers-header h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
-}
-
-.offers-header p {
-    font-size: 1rem;
-    color: #cccccc;
-}
-
-.offers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.offer-card {
-    background: rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(255, 68, 68, 0.3);
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.offer-card:hover {
-    transform: translateY(-5px);
-    border-color: #ff4444;
-    box-shadow: 0 15px 35px rgba(255, 68, 68, 0.3);
-}
-
-.offer-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #ff4444, #ff6666, #ff4444);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.offer-card:hover::before {
-    opacity: 1;
-}
-
-.offer-icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 1rem;
-    background: linear-gradient(135deg, #ff4444, #ff6666);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: #ffffff;
-    box-shadow: 0 6px 20px rgba(255, 68, 68, 0.3);
-}
-
-.offer-card h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 0.3rem;
-}
-
-.offer-discount {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #ff4444;
-    margin-bottom: 0.3rem;
-}
-
-.offer-title {
-    font-size: 0.9rem;
-    color: #cccccc;
-    margin-bottom: 0.8rem;
-    font-weight: 500;
-}
-
-.offer-card p {
-    color: #aaaaaa;
-    line-height: 1.4;
-    margin-bottom: 1rem;
-    font-size: 0.85rem;
-}
-
-.offer-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #ff4444, #ff6666);
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Special styling for each offer type */
-.new-customer .offer-icon {
-    background: linear-gradient(135deg, #ff4444, #ff6666);
-}
-
-.bulk-order .offer-icon {
-    background: linear-gradient(135deg, #4CAF50, #66BB6A);
-}
-
-.loyalty .offer-icon {
-    background: linear-gradient(135deg, #FF9800, #FFB74D);
-}
-
-.bulk-order .offer-discount {
-    color: #4CAF50;
-}
-
-.loyalty .offer-discount {
-    color: #FF9800;
-}
-
-.bulk-order .offer-badge {
-    background: linear-gradient(135deg, #4CAF50, #66BB6A);
-}
-
-.loyalty .offer-badge {
-    background: linear-gradient(135deg, #FF9800, #FFB74D);
-}
-
-/* Mobile Responsive for Special Offers */
-@media (max-width: 768px) {
-    .offers-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .offer-card {
-        padding: 1.2rem;
-    }
-    
-    .offers-header h2 {
-        font-size: 1.8rem;
-    }
-    
-    .offers-header p {
-        font-size: 0.9rem;
-    }
-    
-    .offer-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-    }
-    
-    .offer-card h3 {
-        font-size: 1.1rem;
-    }
-    
-    .offer-discount {
-        font-size: 1.2rem;
-    }
-}
 
 /* Enhanced Icons */
 .service-icon, .loyalty-icon, .value-icon, .contact-icon, .points-icon {
@@ -3430,7 +3249,7 @@ nav a:hover {
         grid-template-columns: 1fr;
     }
     
-    .pricing-grid, .loyalty-grid, .contact-grid, .offers-grid, .points-grid, .tiers-grid, .faq-grid {
+    .pricing-grid, .loyalty-grid, .contact-grid, .points-grid, .tiers-grid, .faq-grid {
         grid-template-columns: 1fr;
     }
     
@@ -3551,7 +3370,7 @@ nav a:hover {
         color: black !important;
     }
     
-    .service-card, .loyalty-card, .value-card, .contact-card, .offer-card, .points-card, .tier-card, .faq-item {
+    .service-card, .loyalty-card, .value-card, .contact-card, .points-card, .tier-card, .faq-item {
         box-shadow: none !important;
         border: 1px solid #ccc !important;
     }
@@ -3565,7 +3384,7 @@ nav a:hover {
         transition-duration: 0.01ms !important;
     }
     
-    .service-card, .loyalty-card, .value-card, .contact-card, .offer-card, .points-card, .tier-card, .faq-item {
+    .service-card, .loyalty-card, .value-card, .contact-card, .points-card, .tier-card, .faq-item {
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
@@ -3574,13 +3393,13 @@ nav a:hover {
 
 /* Mobile Performance Optimization */
 @media (max-width: 768px) {
-    .service-card, .loyalty-card, .value-card, .contact-card, .offer-card, .points-card, .tier-card, .faq-item {
+    .service-card, .loyalty-card, .value-card, .contact-card, .points-card, .tier-card, .faq-item {
         animation: none;
         opacity: 1;
         transform: none;
     }
     
-    .service-card:hover, .loyalty-card:hover, .value-card:hover, .contact-card:hover, .offer-card:hover, .points-card:hover, .tier-card:hover, .faq-item:hover {
+    .service-card:hover, .loyalty-card:hover, .value-card:hover, .contact-card:hover, .points-card:hover, .tier-card:hover, .faq-item:hover {
         transform: none;
     }
     
@@ -4525,7 +4344,7 @@ nav a:hover {
 
 /* High Contrast Mode */
 @media (prefers-contrast: high) {
-    .service-card, .loyalty-card, .value-card, .contact-card, .offer-card, .points-card, .tier-card, .faq-item {
+    .service-card, .loyalty-card, .value-card, .contact-card, .points-card, .tier-card, .faq-item {
         border: 2px solid #ffffff;
     }
     

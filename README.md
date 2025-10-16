@@ -157,13 +157,12 @@ This website is ready for deployment on any web hosting service that supports st
 ## Business Locations
 
 - **Echague Branch**: Purok 4, Villa Victoria, Echague, Isabela (Beside COG Villa Victoria)
-- **Jones Branch**: Brgy 1, Jones, Isabela (Coming Soon)
 
 ## Business Hours
 
 - **Monday - Friday**: 8:00 AM - 5:00 PM
 - **Saturday**: 8:00 AM - 12:00 PM
-- **Sunday**: By Appointment (1:00 PM - 5:00 PM)
+- **Sunday**: Closed
 
 ## License
 
