@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Products - TechPrint Core</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>0954-176-3978</span>
+                            <i class="fas fa-envelope"></i>
+                            <span>techprintcoreph@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="social-media">
+                        <span>TechPrint Core</span>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/techprintcore" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/techprintcoreph/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <h1>TechPrint <span class="core-text">Core</span></h1>
+                    </div>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <nav class="nav" id="mainNav">
+                        <ul>
+                            <li><a href="index.html">HOME</a></li>
+                            <li><a href="About.html">ABOUT</a></li>
+                            <li><a href="Services.html">SERVICES</a></li>
+                            <li><a href="Products.html" class="active">PRODUCTS</a></li>
+                            <li><a href="Pricing.html">PRICING</a></li>
+                            <li><a href="loyalty perks.html">LOYALTY PERKS</a></li>
+                            <li><a href="Contact us.html">CONTACT US</a></li>
+                        </ul>
+                    </nav>
+                    <div class="cart-icon" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Hero Section -->
+    <section class="products-hero">
+        <div class="container">
+            <div class="products-hero-content">
+                <h1>Product Catalog</h1>
+                <p>Discover our premium promotional products and custom merchandise</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-header">
+                <h2>Available Products</h2>
+                <p>High-quality promotional items perfect for your business needs</p>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Commercial Calendar -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="COMMERCIAL CALENDAR Price .png" alt="Commercial Calendar Pricing" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>Commercial Calendar</h3>
+                        <p>Professional commercial calendars with custom branding. Perfect for client gifts, office use, and promotional marketing.</p>
+                        <div class="product-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Multiple sizes available</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Custom branding options</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>High-quality printing</span>
+                            </div>
+                        </div>
+                        <div class="product-controls">
+                            <div class="quantity-selector">
+                                <label for="calendar-qty">Quantity:</label>
+                                <div class="qty-input">
+                                    <button type="button" class="qty-btn" onclick="changeQuantity('calendar', -1)">-</button>
+                                    <input type="number" id="calendar-qty" value="50" min="50" step="50" onchange="updateQuantity('calendar', this.value)">
+                                    <button type="button" class="qty-btn" onclick="changeQuantity('calendar', 1)">+</button>
+                                </div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('calendar', 'Commercial Calendar', document.getElementById('calendar-qty').value)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Refrigerator Magnet -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="Ref Magnet.png" alt="Refrigerator Magnet Pricing" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>Refrigerator Magnet</h3>
+                        <p>High-quality refrigerator magnets for effective advertising. Durable, eye-catching promotional materials perfect for branding.</p>
+                        <div class="product-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Multiple shapes & sizes</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Custom lamination options</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Durable magnetic backing</span>
+                            </div>
+                        </div>
+                        <div class="product-controls">
+                            <div class="quantity-selector">
+                                <label for="magnet-qty">Quantity:</label>
+                                <div class="qty-input">
+                                    <button type="button" class="qty-btn" onclick="changeQuantity('magnet', -1)">-</button>
+                                    <input type="number" id="magnet-qty" value="50" min="50" step="50" onchange="updateQuantity('magnet', this.value)">
+                                    <button type="button" class="qty-btn" onclick="changeQuantity('magnet', 1)">+</button>
+                                </div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('magnet', 'Refrigerator Magnet', document.getElementById('magnet-qty').value)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acrylic Keyring -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="Acrylic Keyring.png" alt="Acrylic Keyring Pricing" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>Acrylic Keyring</h3>
+                        <p>Custom acrylic keyrings with your logo or design. Perfect for branding, promotional giveaways, and corporate gifts.</p>
+                        <div class="product-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Various shapes available</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>High-quality acrylic material</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Custom designs welcome</span>
+                            </div>
+                        </div>
+                        <div class="product-controls">
+                            <div class="quantity-selector">
+                                <label for="keyring-qty">Quantity:</label>
+                                <div class="qty-input">
+                                    <button type="button" class="qty-btn" onclick="changeQuantity('keyring', -1)">-</button>
+                                    <input type="number" id="keyring-qty" value="50" min="50" step="50" onchange="updateQuantity('keyring', this.value)">
+                                    <button type="button" class="qty-btn" onclick="changeQuantity('keyring', 1)">+</button>
+                                </div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('keyring', 'Acrylic Keyring', document.getElementById('keyring-qty').value)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <p>Add some promotional products to get started!</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="total-items">
+                    <span>Total Items:</span>
+                    <span id="totalItems">0</span>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn-secondary" onclick="clearCart()">Clear Cart</button>
+                    <button class="btn-primary" onclick="checkout()">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <div class="checkout-header">
+                <h3>Checkout</h3>
+                <button class="close-checkout" onclick="closeCheckout()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="checkout-body">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h4>Order Summary</h4>
+                    <div class="order-items" id="checkoutOrderItems">
+                        <!-- Order items will be populated here -->
+                    </div>
+                    <div class="order-total">
+                        <span>Total Items:</span>
+                        <span id="checkoutTotalItems">0</span>
+                    </div>
+                </div>
+
+                <!-- Customer Information -->
+                <div class="customer-info">
+                    <h4>Customer Information</h4>
+                    <form id="checkoutForm">
+                        <div class="form-group">
+                            <label for="customerName">Full Name *</label>
+                            <input type="text" id="customerName" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Phone Number *</label>
+                            <input type="tel" id="customerPhone" name="customerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email Address</label>
+                            <input type="email" id="customerEmail" name="customerEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryAddress">Delivery Address</label>
+                            <textarea id="deliveryAddress" name="deliveryAddress" rows="3" placeholder="Leave blank for pickup at store"></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Payment Options -->
+                <div class="payment-options">
+                    <h4>Payment Method *</h4>
+                    <div class="payment-methods">
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="gcash" required>
+                            <div class="payment-card">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>GCash</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="bank">
+                            <div class="payment-card">
+                                <i class="fas fa-university"></i>
+                                <span>Bank Transfer</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="cash">
+                            <div class="payment-card">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>Cash on Pickup</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Payment Instructions -->
+                <div class="payment-instructions" id="paymentInstructions">
+                    <!-- Payment instructions will be shown based on selection -->
+                </div>
+            </div>
+            
+            <div class="checkout-footer">
+                <div class="checkout-actions">
+                    <button class="btn-secondary" onclick="closeCheckout()">Cancel</button>
+                    <button class="btn-primary" onclick="submitOrder()">Submit Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckout()"></div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 4rem;">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <h3>TechPrint <span class="core-text">Core</span></h3>
+                        <span>New Business in Isabela</span>
+                    </div>
+                    <p>Your trusted new partner for professional printing, creative design, and reliable computer services in Isabela. Quality service with personal attention.</p>
+                    <div class="social-links">
+                        <a href="mailto:techprintcoreph@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.facebook.com/techprintcore" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/techprintcoreph/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/639541763978" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-middle">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="Services.html">Services</a></li>
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="loyalty perks.html">Invitation Services</a></li>
+                        <li><a href="Contact us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-right">
+                    <h4 class="text-lg font-semibold mb-6">Contact Info</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone h-4 w-4 text-red-400 mr-3 flex-shrink-0"></i>
+                            <div class="text-sm text-gray-400">
+                                <div>0954-176-3978</div>
+                                <div>0965-669-4049</div>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope h-4 w-4 text-red-400 mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-400">techprintcoreph@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt h-4 w-4 text-red-400 mr-3 mt-1 flex-shrink-0"></i>
+                            <div class="text-sm text-gray-400">
+                                <div class="font-medium">Echague Branch</div>
+                                <div>Purok 4, Villa Victoria</div>
+                                <div class="font-medium mt-2">Jones Branch</div>
+                                <div>Coming Soon</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="business-hours">
+                <h4>Business Hours</h4>
+                <div class="hours-grid">
+                    <div class="hours-item">
+                        <span class="day">Monday - Friday:</span>
+                        <span class="time">8:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="day">Saturday:</span>
+                        <span class="time">8:00 AM - 12:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="day">Sunday:</span>
+                        <span class="time">By Appointment (1:00 PM - 5:00 PM)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechPrint Core. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Script -->
+    <script src='https://cdn.jotfor.ms/agent/embedjs/01998af69764716896d755186c955ea5e6db/embed.js'>
+    </script>
+    
+    <!-- Chatbot Restart Configuration -->
+    <script>
+        // Chatbot restart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for chatbot to load
+            setTimeout(function() {
+                // Listen for conversation end events
+                if (window.JotFormAgent) {
+                    // Reset chatbot after conversation ends
+                    window.JotFormAgent.on('conversation:end', function() {
+                        setTimeout(function() {
+                            // Restart the chatbot widget
+                            if (window.JotFormAgent && window.JotFormAgent.reset) {
+                                window.JotFormAgent.reset();
+                            }
+                        }, 2000); // Wait 2 seconds before restarting
+                    });
+                }
+            }, 3000); // Wait 3 seconds for chatbot to fully load
+        });
+    </script>
+
+    <!-- Return to Top Button -->
+    <button id="returnToTop" class="return-to-top" title="Return to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (mobileMenuToggle && mainNav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('nav-open');
+                    mobileMenuToggle.classList.toggle('active');
+                });
+                
+                // Close menu when clicking on a link
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mainNav.classList.remove('nav-open');
+                        mobileMenuToggle.classList.remove('active');
+                    });
+                });
+            }
+        });
+
+        // Page Transition Effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation classes to sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                if (index % 2 === 0) {
+                    section.classList.add('section-animate');
+                } else {
+                    section.classList.add('section-animate-alt');
+                }
+            });
+
+            // Add staggered animation to cards and elements
+            const cards = document.querySelectorAll('.card, .service-card, .pricing-card, .product-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('section-animate-delay');
+            });
+
+            // Navigation link click effects
+            const navLinks = document.querySelectorAll('nav a, .btn-primary, .btn-secondary');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Add click animation
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections for scroll animations
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+
+        // Return to Top Button
+        document.addEventListener('DOMContentLoaded', function() {
+            const returnToTopBtn = document.getElementById('returnToTop');
+            
+            if (returnToTopBtn) {
+                // Show/hide button based on scroll position
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        returnToTopBtn.classList.add('show');
+                    } else {
+                        returnToTopBtn.classList.remove('show');
+                    }
+                });
+                
+                // Smooth scroll to top when clicked
+                returnToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+
+        // Cart System JavaScript
+        let cart = [];
+        let cartTotal = 0;
+
+        // Cart Functions
+        function addToCart(productId, productName, quantity) {
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += parseInt(quantity);
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    quantity: parseInt(quantity)
+                });
+            }
+            
+            updateCartDisplay();
+            showCartNotification(`${productName} added to cart!`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartDisplay();
+        }
+
+        function updateCartItemQuantity(productId, newQuantity) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                if (newQuantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    item.quantity = newQuantity;
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartDisplay();
+            showCartNotification('Cart cleared!');
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const totalItems = document.getElementById('totalItems');
+            
+            // Update cart count in header
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalQuantity;
+            totalItems.textContent = totalQuantity;
+            
+            // Update cart items display
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Your cart is empty</p>
+                        <p>Add some promotional products to get started!</p>
+                    </div>
+                `;
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <h4>${item.name}</h4>
+                            <div class="item-controls">
+                                <button onclick="updateCartItemQuantity('${item.id}', ${item.quantity - 50})" class="qty-btn">-</button>
+                                <span class="item-qty">${item.quantity}</span>
+                                <button onclick="updateCartItemQuantity('${item.id}', ${item.quantity + 50})" class="qty-btn">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart('${item.id}')" class="remove-item">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleCart() {
+            const cartSidebar = document.getElementById('cartSidebar');
+            const cartOverlay = document.getElementById('cartOverlay');
+            
+            cartSidebar.classList.toggle('active');
+            cartOverlay.classList.toggle('active');
+            document.body.classList.toggle('cart-open');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            // Close cart and open checkout modal
+            toggleCart();
+            openCheckout();
+        }
+
+        function openCheckout() {
+            const checkoutModal = document.getElementById('checkoutModal');
+            const checkoutOverlay = document.getElementById('checkoutOverlay');
+            
+            // Populate order summary
+            updateCheckoutOrderSummary();
+            
+            checkoutModal.classList.add('active');
+            checkoutOverlay.classList.add('active');
+            document.body.classList.add('checkout-open');
+        }
+
+        function closeCheckout() {
+            const checkoutModal = document.getElementById('checkoutModal');
+            const checkoutOverlay = document.getElementById('checkoutOverlay');
+            
+            checkoutModal.classList.remove('active');
+            checkoutOverlay.classList.remove('active');
+            document.body.classList.remove('checkout-open');
+        }
+
+        function updateCheckoutOrderSummary() {
+            const checkoutOrderItems = document.getElementById('checkoutOrderItems');
+            const checkoutTotalItems = document.getElementById('checkoutTotalItems');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            checkoutTotalItems.textContent = totalItems;
+            
+            checkoutOrderItems.innerHTML = cart.map(item => `
+                <div class="checkout-item">
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-quantity">Qty: ${item.quantity}</span>
+                </div>
+            `).join('');
+        }
+
+        function showCartNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'cart-notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Hide and remove notification
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
+        }
+
+        // Quantity control functions
+        function changeQuantity(productId, change) {
+            const input = document.getElementById(productId + '-qty');
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(50, currentValue + (change * 50));
+            input.value = newValue;
+        }
+
+        function updateQuantity(productId, value) {
+            const input = document.getElementById(productId + '-qty');
+            const numValue = parseInt(value);
+            if (numValue < 50) {
+                input.value = 50;
+            } else if (numValue % 50 !== 0) {
+                input.value = Math.round(numValue / 50) * 50;
+            }
+        }
+
+        // Close cart when clicking outside
+        document.addEventListener('click', function(e) {
+            const cartSidebar = document.getElementById('cartSidebar');
+            const cartIcon = document.querySelector('.cart-icon');
+            
+            if (cartSidebar.classList.contains('active') && 
+                !cartSidebar.contains(e.target) && 
+                !cartIcon.contains(e.target)) {
+                toggleCart();
+            }
+        });
+
+        // Initialize cart display
+        updateCartDisplay();
+
+        // Payment method handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+            const paymentInstructions = document.getElementById('paymentInstructions');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', function() {
+                    updatePaymentInstructions(this.value);
+                });
+            });
+        });
+
+        function updatePaymentInstructions(method) {
+            const paymentInstructions = document.getElementById('paymentInstructions');
+            let instructions = '';
+            
+            switch(method) {
+                case 'gcash':
+                    instructions = `
+                        <div class="payment-info">
+                            <h5>GCash Payment</h5>
+                            <p>Send payment to: <strong>0954-176-3978</strong></p>
+                            <p>Please include your order reference in the payment note.</p>
+                        </div>
+                    `;
+                    break;
+                case 'bank':
+                    instructions = `
+                        <div class="payment-info">
+                            <h5>Bank Transfer</h5>
+                            <p><strong>Available Banks:</strong></p>
+                            <ul>
+                                <li>BDO</li>
+                                <li>BPI</li>
+                                <li>Metrobank</li>
+                                <li>PNB</li>
+                                <li>RCBC</li>
+                                <li>Landbank</li>
+                                <li>Chinabank</li>
+                            </ul>
+                            <p>Contact us for account details after order submission.</p>
+                        </div>
+                    `;
+                    break;
+                case 'cash':
+                    instructions = `
+                        <div class="payment-info">
+                            <h5>Cash on Pickup</h5>
+                            <p>Pay with cash when you pick up your order at our store.</p>
+                            <p><strong>Location:</strong> Purok 4, Villa Victoria, Echague, Isabela</p>
+                            <p><strong>Business Hours:</strong> Mon-Fri 8AM-5PM, Sat 8AM-12PM</p>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            paymentInstructions.innerHTML = instructions;
+        }
+
+        function submitOrder() {
+            // Validate form
+            const form = document.getElementById('checkoutForm');
+            const customerName = document.getElementById('customerName').value;
+            const customerPhone = document.getElementById('customerPhone').value;
+            const selectedPayment = document.querySelector('input[name="paymentMethod"]:checked');
+            
+            if (!customerName || !customerPhone) {
+                alert('Please fill in all required fields (Name and Phone).');
+                return;
+            }
+            
+            if (!selectedPayment) {
+                alert('Please select a payment method.');
+                return;
+            }
+            
+            // Create order summary
+            const orderSummary = createOrderSummary();
+            
+            // Send via WhatsApp
+            sendOrderViaWhatsApp(orderSummary);
+            
+            // Also copy to clipboard as backup
+            navigator.clipboard.writeText(orderSummary).then(() => {
+                console.log('Order summary copied to clipboard');
+            });
+        }
+
+        function createOrderSummary() {
+            const customerName = document.getElementById('customerName').value;
+            const customerPhone = document.getElementById('customerPhone').value;
+            const customerEmail = document.getElementById('customerEmail').value;
+            const deliveryAddress = document.getElementById('deliveryAddress').value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            
+            let summary = `🛒 *NEW ORDER - TechPrint Core*\n\n`;
+            summary += `👤 *Customer Information:*\n`;
+            summary += `Name: ${customerName}\n`;
+            summary += `Phone: ${customerPhone}\n`;
+            if (customerEmail) summary += `Email: ${customerEmail}\n`;
+            if (deliveryAddress) summary += `Address: ${deliveryAddress}\n`;
+            else summary += `Delivery: Pickup at store\n`;
+            summary += `Payment: ${paymentMethod.toUpperCase()}\n\n`;
+            
+            summary += `📦 *Order Details:*\n`;
+            cart.forEach(item => {
+                summary += `• ${item.name} - Quantity: ${item.quantity}\n`;
+            });
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            summary += `\n📊 Total Items: ${totalItems}\n\n`;
+            
+            summary += `💰 *Payment Instructions:*\n`;
+            switch(paymentMethod) {
+                case 'gcash':
+                    summary += `Send payment to: 0954-176-3978\nInclude order reference in payment note.`;
+                    break;
+                case 'bank':
+                    summary += `Bank transfer - Contact us for account details.`;
+                    break;
+                case 'cash':
+                    summary += `Cash on pickup at store.\nLocation: Purok 4, Villa Victoria, Echague, Isabela`;
+                    break;
+            }
+            
+            summary += `\n\n📞 Contact us for pricing and confirmation:\n`;
+            summary += `Phone: 0954-176-3978\n`;
+            summary += `Email: techprintcoreph@gmail.com`;
+            
+            return summary;
+        }
+
+        function sendOrderViaWhatsApp(orderSummary) {
+            const phoneNumber = '639541763978'; // Your WhatsApp number
+            const encodedMessage = encodeURIComponent(orderSummary);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            // Open WhatsApp in new tab
+            window.open(whatsappUrl, '_blank');
+            
+            // Show success message and clear cart
+            alert('Order sent via WhatsApp! We will contact you soon to confirm pricing and delivery details.');
+            
+            // Clear cart and close checkout
+            clearCart();
+            closeCheckout();
+        }
+    </script>
+</body>
+</html>

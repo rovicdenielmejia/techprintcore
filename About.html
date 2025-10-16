@@ -47,15 +47,20 @@
                                 <span></span>
                             </button>
                             <nav class="nav" id="mainNav">
-                                <ul>
-                                    <li><a href="index.html">HOME</a></li>
-                                    <li><a href="About.html" class="active">ABOUT</a></li>
-                                    <li><a href="Services.html">SERVICES</a></li>
-                                    <li><a href="Pricing.html">PRICING</a></li>
-                                    <li><a href="loyalty perks.html">LOYALTY PERKS</a></li>
-                                    <li><a href="Contact us.html">CONTACT US</a></li>
-                                </ul>
+                        <ul>
+                            <li><a href="index.html">HOME</a></li>
+                            <li><a href="About.html" class="active">ABOUT</a></li>
+                            <li><a href="Services.html">SERVICES</a></li>
+                            <li><a href="Products.html">PRODUCTS</a></li>
+                            <li><a href="Pricing.html">PRICING</a></li>
+                            <li><a href="loyalty perks.html">LOYALTY PERKS</a></li>
+                            <li><a href="Contact us.html">CONTACT US</a></li>
+                        </ul>
                             </nav>
+                            <div class="cart-icon" onclick="toggleCart()">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-count" id="cartCount">0</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -289,6 +294,28 @@
 
     <!-- Chatbot Script -->
     <script src='https://cdn.jotfor.ms/agent/embedjs/01998af69764716896d755186c955ea5e6db/embed.js'>
+    </script>
+    
+    <!-- Chatbot Restart Configuration -->
+    <script>
+        // Chatbot restart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for chatbot to load
+            setTimeout(function() {
+                // Listen for conversation end events
+                if (window.JotFormAgent) {
+                    // Reset chatbot after conversation ends
+                    window.JotFormAgent.on('conversation:end', function() {
+                        setTimeout(function() {
+                            // Restart the chatbot widget
+                            if (window.JotFormAgent && window.JotFormAgent.reset) {
+                                window.JotFormAgent.reset();
+                            }
+                        }, 2000); // Wait 2 seconds before restarting
+                    });
+                }
+            }, 3000); // Wait 3 seconds for chatbot to fully load
+        });
     </script>
 
     <!-- Return to Top Button -->
