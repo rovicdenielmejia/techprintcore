@@ -20,8 +20,8 @@ A modern, responsive website for TechPrint Core - a professional printing, desig
 - **About** (`about.html`) - Company information, mission, vision, and values
 - **Services** (`Services.html`) - Detailed service offerings
 - **Pricing** (`Pricing.html`) - Comprehensive pricing information
-- **Loyalty Perks** (`loyalty perks.html`) - Loyalty program and rewards
-- **Contact Us** (`Contact us.html`) - Contact form and business information
+- **Loyalty Perks** (`loyalty_perks`) - Loyalty program and rewards
+- **Contact Us** (`Contact_us`) - Contact form and business information
 
 ## Technologies Used
 
@@ -127,8 +127,8 @@ This website is ready for deployment on any web hosting service that supports st
 ├── About.html              # About page
 ├── Services.html           # Services page with design request forms
 ├── Pricing.html            # Pricing page
-├── loyalty perks.html      # Loyalty program page
-├── Contact us.html         # Contact page
+├── loyalty perks.html      # Loyalty program page (served at `loyalty_perks`)
+├── Contact us.html         # Contact page (served at `Contact_us`)
 ├── styles.css              # Main stylesheet (optimized, upload styles removed)
 ├── trace.svg               # Logo file
 ├── interior.jpg            # Interior image
@@ -142,8 +142,8 @@ This website is ready for deployment on any web hosting service that supports st
 ### Key Features by File
 - **index.html** - Homepage with service design request modals
 - **Services.html** - Dedicated services page with design request forms
-- **loyalty perks.html** - Loyalty program signup and terms
-- **Contact us.html** - Contact form and business information
+- **loyalty_perks** - Loyalty program signup and terms
+- **Contact_us** - Contact form and business information
 - **styles.css** - Optimized CSS with upload functionality removed
 
 ## Contact Information

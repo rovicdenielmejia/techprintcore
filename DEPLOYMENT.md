@@ -68,8 +68,8 @@ techprint-core-website/
 ├── about.html              # About page
 ├── Services.html           # Services page
 ├── Pricing.html            # Pricing page
-├── loyalty perks.html      # Loyalty program
-├── Contact us.html         # Contact page
+├── loyalty perks.html      # Loyalty program (served at `loyalty_perks`)
+├── Contact us.html         # Contact page (served at `Contact_us`)
 ├── styles.css              # Main stylesheet
 ├── trace.svg               # Logo
 ├── interior.jpg            # Interior image
