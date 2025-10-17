@@ -69,7 +69,7 @@ techprint-core-website/
 ├── Services.html           # Services page
 ├── Pricing.html            # Pricing page
 ├── loyalty perks.html      # Loyalty program
-├── Contact us.html         # Contact page
+├── Contact us.html         # Contact page (deployed as https://www.techprintcore.shop/Contact_us)
 ├── styles.css              # Main stylesheet
 ├── trace.svg               # Logo
 ├── interior.jpg            # Interior image
