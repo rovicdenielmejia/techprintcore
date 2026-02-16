@@ -9,7 +9,8 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: #ffffff;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d1b1b 25%, #4a1a1a 50%, #2d1b1b 75%, #1a1a1a 100%);
+    /* Print-studio feel: dark base with subtle warm paper tone */
+    background: linear-gradient(160deg, #1c1917 0%, #252220 20%, #2a2522 40%, #1f1d1b 70%, #1a1918 100%);
     background-attachment: fixed;
     min-height: 100vh;
     padding-top: 120px;
@@ -202,12 +203,89 @@ body {
     transform: translateY(-2px);
 }
 
-/* Hero Section */
+/* Hero Section - proper banner so it doesn't look like phishing */
 .hero {
-    padding: 1rem 0;
-    min-height: 80vh;
+    padding: 0;
+    min-height: 0;
+    position: relative;
+}
+
+.hero-banner {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
     display: flex;
     align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1816 0%, #252220 30%, #2c2825 50%, #1f1d1b 100%);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+
+/* Optional: when you add a photo, add class hero-banner--has-image to .hero-banner */
+.hero-banner.hero-banner--has-image {
+    background-color: #1a1816;
+}
+
+.hero-banner-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.5) 100%);
+    z-index: 1;
+}
+
+/* Subtle dot texture on banner */
+.hero-banner-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+    background-size: 20px 20px;
+    pointer-events: none;
+}
+
+/* Decorative strip - print icons so it reads as real business banner */
+.hero-banner-graphic {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.hero-banner-graphic-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.hero-banner-graphic i {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.2);
+}
+
+.hero-banner-container {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 20px 4rem;
 }
 
 .hero-content {
@@ -221,6 +299,27 @@ body {
     max-width: 800px;
     width: 100%;
     text-align: center;
+    position: relative;
+}
+
+/* Hero badge - reads as "print" at a glance */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ff4444;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(255, 68, 68, 0.4);
+    border-radius: 4px;
+}
+
+.hero-badge i {
+    font-size: 1rem;
 }
 
 .location-info {
@@ -3622,11 +3721,21 @@ nav a:hover {
         width: 100%;
     }
     
-    /* Hero Section Mobile */
-    .hero {
-        padding: 1rem 0;
-        min-height: 60vh;
-        margin-top: 0;
+    /* Hero Section Mobile - keep banner visible */
+    .hero-banner {
+        min-height: 75vh;
+    }
+    
+    .hero-banner-container {
+        padding: 2rem 1rem 3rem;
+    }
+    
+    .hero-banner-graphic-inner {
+        gap: 1.5rem;
+    }
+    
+    .hero-banner-graphic i {
+        font-size: 1.2rem;
     }
     
     .hero-content {
@@ -3864,6 +3973,169 @@ nav a:hover {
     }
 }
 
+/* Center all elements on tablet and mobile */
+@media (max-width: 1024px) {
+    .section-header,
+    .section-header h2,
+    .section-header p,
+    .testimonials-header,
+    .testimonials-header h2,
+    .testimonials-header p,
+    .quality-content,
+    .quality-content h2,
+    .quality-content p,
+    .process h2,
+    .about-hero, .services-hero, .loyalty-hero, .contact-hero, .pricing-hero,
+    .about-hero p, .services-hero p, .loyalty-hero p, .contact-hero p, .pricing-hero p {
+        text-align: center;
+    }
+    
+    .section-header p,
+    .testimonials-header p,
+    .quality-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .footer-content {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-left,
+    .footer-middle,
+    .footer-right {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-left p,
+    .footer-middle h4,
+    .footer-right h4 {
+        text-align: center;
+    }
+    
+    .footer .social-links {
+        justify-content: center;
+    }
+    
+    .footer-middle ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0;
+    }
+    
+    .footer .contact-info {
+        align-items: center;
+    }
+    
+    .business-hours h4 {
+        text-align: center;
+    }
+    
+    .about-content {
+        text-align: center;
+    }
+    
+    .about-text,
+    .about-text h2,
+    .about-text p {
+        text-align: center;
+    }
+    
+    .about-image {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .mission-vision-text h2,
+    .mission-card, .vision-card,
+    .mission-card h3, .vision-card h3,
+    .mission-card p, .vision-card p {
+        text-align: center;
+    }
+    
+    .mission-vision-grid {
+        justify-items: center;
+    }
+    
+    .values-grid {
+        justify-items: center;
+    }
+    
+    .value-card {
+        text-align: center;
+    }
+    
+    .process-steps {
+        justify-items: center;
+    }
+    
+    .step {
+        text-align: center;
+    }
+    
+    .contact-form {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .contact-grid {
+        justify-items: center;
+    }
+    
+    .services-grid {
+        justify-items: center;
+    }
+    
+    .pricing-grid,
+    .loyalty-grid,
+    .points-grid,
+    .tiers-grid,
+    .faq-grid {
+        justify-items: center;
+    }
+    
+    .pricing-category,
+    .loyalty-card,
+    .faq-item {
+        text-align: center;
+    }
+    
+    .service-card {
+        text-align: center;
+    }
+    
+    .service-card .service-icon,
+    .service-card h3,
+    .service-card p,
+    .service-card ul {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .service-card ul {
+        padding-left: 0;
+        list-style-position: inside;
+    }
+    
+    .testimonial-card {
+        text-align: center;
+    }
+    
+    .highlight {
+        justify-content: center;
+    }
+    
+    .hero-badge {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 @media (max-width: 480px) {
     .container {
         padding: 0 0.8rem;
@@ -4050,9 +4322,12 @@ nav a:hover {
 
 /* Landscape Mobile Devices */
 @media (max-width: 768px) and (orientation: landscape) {
-    .hero {
-        min-height: 50vh;
-        padding: 1.5rem 0;
+    .hero-banner {
+        min-height: 65vh;
+    }
+    
+    .hero-banner-container {
+        padding: 1.5rem 1rem 2rem;
     }
     
     .hero h1 {
