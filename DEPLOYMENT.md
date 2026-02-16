@@ -29,21 +29,22 @@
 4. **Access Your Website:**
    - URL: `https://YOUR_USERNAME.github.io/techprint-core-website`
 
-### 2. Netlify (Easy Drag & Drop)
+### 3. Netlify (Easy Drag & Drop)
 
 1. **Go to [Netlify.com](https://netlify.com)**
 2. **Sign up/Login**
 3. **Drag and drop your project folder** to the deploy area
 4. **Get instant URL** (e.g., `https://amazing-name-123456.netlify.app`)
 
-### 3. Vercel (Fast & Global)
+### 2. Vercel (Recommended for this project)
 
 1. **Go to [Vercel.com](https://vercel.com)**
 2. **Sign up with GitHub**
 3. **Import your repository**
-4. **Deploy automatically**
+4. **Deploy** — `vercel.json` is picked up automatically for clean URLs
+5. **URLs**: `yoursite.vercel.app/`, `/about`, `/services`, etc. (no `.html` in the address bar)
 
-### 4. Firebase Hosting (Google)
+### 4. Firebase Hosting
 
 1. **Install Firebase CLI:**
    ```bash
@@ -64,14 +65,16 @@
 
 ```
 techprint-core-website/
-├── index.html              # Homepage (entry point)
-├── about.html              # About page
+├── vercel.json             # Vercel: clean URLs (no .html in address bar)
+├── home.html               # Homepage (entry point)
+├── About.html              # About page
 ├── Services.html           # Services page
 ├── Pricing.html            # Pricing page
 ├── loyalty perks.html      # Loyalty program
 ├── Contact us.html         # Contact page
+├── Products.html           # Products page
 ├── styles.css              # Main stylesheet
-├── trace.svg               # Logo
+├── Logo Circle White.png   # Logo (header/favicon)
 ├── interior.jpg            # Interior image
 ├── Loyalty Card/           # Loyalty card images
 ├── README.md               # Documentation
@@ -80,6 +83,13 @@ techprint-core-website/
 ```
 
 ## Important Notes
+
+### Clean URLs (Vercel)
+The `vercel.json` rewrites enable extensionless URLs. Visitors see:
+- `yoursite.com/` or `yoursite.com/home` (not `home.html`)
+- `yoursite.com/about`, `/services`, `/pricing`, `/loyalty-perks`, `/contact`, `/products`
+
+No subfolders or duplicate `index.html` files are needed—all pages are the root `.html` files; Vercel rewrites handle the clean URLs.
 
 ### Form Functionality
 - **Contact Form**: Currently uses simulated email integration

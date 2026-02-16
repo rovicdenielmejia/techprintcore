@@ -16,7 +16,7 @@ A modern, responsive website for TechPrint Core - a professional printing, desig
 
 ## Pages
 
-- **Home** (`index.html`) - Main landing page with services and features
+- **Home** (`home.html`) - Main landing page with services and features
 - **About** (`about.html`) - Company information, mission, vision, and values
 - **Services** (`Services.html`) - Detailed service offerings
 - **Pricing** (`Pricing.html`) - Comprehensive pricing information
@@ -123,15 +123,17 @@ This website is ready for deployment on any web hosting service that supports st
 
 ```
 /
-├── index.html              # Homepage with service design modals
+├── vercel.json             # Vercel rewrites for clean URLs (/, /about, /services, etc.)
+├── home.html               # Homepage (entry point) with service design modals
 ├── About.html              # About page
 ├── Services.html           # Services page with design request forms
 ├── Pricing.html            # Pricing page
 ├── loyalty perks.html      # Loyalty program page
 ├── Contact us.html         # Contact page
+├── Products.html           # Products page
 ├── styles.css              # Main stylesheet (optimized, upload styles removed)
-├── trace.svg               # Logo file
-├── interior.jpg            # Interior image
+├── Logo Circle White.png   # Logo (header/favicon)
+├── interior.jpg            # Interior image (About page)
 ├── Loyalty Card/           # Loyalty card images
 │   └── TPC Connect Loyalty Card/
 │       ├── 2.png
@@ -140,7 +142,7 @@ This website is ready for deployment on any web hosting service that supports st
 ```
 
 ### Key Features by File
-- **index.html** - Homepage with service design request modals
+- **home.html** - Homepage with service design request modals
 - **Services.html** - Dedicated services page with design request forms
 - **loyalty perks.html** - Loyalty program signup and terms
 - **Contact us.html** - Contact form and business information

@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/home.html" },
+    { "source": "/home", "destination": "/home.html" },
+    { "source": "/about", "destination": "/About.html" },
+    { "source": "/services", "destination": "/Services.html" },
+    { "source": "/pricing", "destination": "/Pricing.html" },
+    { "source": "/loyalty-perks", "destination": "/loyalty perks.html" },
+    { "source": "/contact", "destination": "/Contact us.html" },
+    { "source": "/products", "destination": "/Products.html" }
+  ]
+}

@@ -114,12 +114,28 @@ body {
     width: 100%;
 }
 
+/* When button is inside .logo: img + name on left, button on right */
 .logo {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
     color: inherit;
+    flex-shrink: 0;
+}
+
+.logo:has(.mobile-menu-toggle) {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.logo-img {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    object-fit: contain;
+    display: block;
     flex-shrink: 0;
 }
 
@@ -143,22 +159,34 @@ body {
 }
 
 .logo-name {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
     font-size: 1.4rem;
-    color: #D4A84B;
+    color: #ffffff;
     letter-spacing: 0.02em;
     line-height: 1.2;
     display: inline-block;
     vertical-align: middle;
 }
 
+.logo-name .logo-core {
+    color: #ff4444;
+}
+
 .logo:hover .logo-name {
-    color: #E5B84B;
+    color: #ffffff;
+}
+
+.logo:hover .logo-name .logo-core {
+    color: #ff5555;
 }
 
 .logo:hover .logo-circle {
     border-color: #fff;
+}
+
+.logo:hover .logo-img {
+    opacity: 0.95;
 }
 
 .core-text {
@@ -217,6 +245,35 @@ body {
     background: transparent;
 }
 
+/* Desktop only: ensure nav bar shows beside logo (override mobile .logo width) */
+@media (min-width: 1025px) {
+    .header-content .logo {
+        width: auto;
+        justify-content: flex-start;
+    }
+
+    .nav {
+        position: static;
+        width: auto;
+        height: auto;
+        pointer-events: auto;
+        visibility: visible;
+    }
+
+    .nav-panel {
+        display: block;
+        position: static;
+        transform: none;
+    }
+
+    .nav ul {
+        display: flex;
+        flex-direction: row;
+        gap: 0.15rem;
+        align-items: center;
+    }
+}
+
 .header-actions {
     display: flex;
     align-items: center;
@@ -264,6 +321,7 @@ body {
     overflow: hidden;
     border-bottom: 1px solid rgba(255,255,255,0.06);
     box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    padding-bottom: 3rem;
 }
 
 /* Optional: when you add a photo, add class hero-banner--has-image to .hero-banner */
@@ -589,7 +647,7 @@ body {
     padding: 1rem 0;
 }
 
-/* Scrollable services grid - for index.html */
+/* Scrollable services grid - for home.html */
 .services-container .services-grid {
     display: flex;
     overflow-x: auto;
@@ -605,7 +663,7 @@ body {
     width: 100%;
 }
 
-/* Scrollable service card - for index.html */
+/* Scrollable service card - for home.html */
 .services-container .service-card {
     flex: 0 0 280px;
     min-width: 280px;
@@ -783,20 +841,33 @@ body {
     flex-wrap: wrap;
 }
 
-/* Testimonials Section */
+/* Testimonials Section - New business commitment to quality, center-aligned */
 .testimonials {
     padding: 1rem 0;
     background: rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.testimonials .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .testimonials-header {
     text-align: center;
     margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .feedback-badge {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     background: #ff4444;
     color: white;
@@ -826,6 +897,9 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    justify-items: center;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .testimonial-card {
@@ -835,11 +909,17 @@ body {
     border-radius: 20px;
     padding: 2rem;
     transition: all 0.3s ease;
+    text-align: center;
+    max-width: 380px;
 }
 
 .testimonial-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-card .stars {
+    justify-content: center;
 }
 
 .stars {
@@ -864,6 +944,7 @@ body {
 .customer {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
 }
 
@@ -891,10 +972,21 @@ body {
     font-size: 0.9rem;
 }
 
-/* Pre-Footer */
+.testimonial-card .customer-info {
+    text-align: center;
+}
+
+/* Pre-Footer - center aligned */
 .pre-footer {
     padding: 4rem 0;
     text-align: center;
+}
+
+.pre-footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .pre-footer-content {
@@ -905,6 +997,11 @@ body {
     padding: 3rem 2rem;
     max-width: 800px;
     margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .pre-footer-content p {
@@ -3652,6 +3749,13 @@ nav a:hover {
         font-size: 0.65rem;
     }
     
+    .logo-img {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    
     /* Hamburger - portfolio-style */
     .mobile-menu-toggle {
         display: flex;
@@ -4304,6 +4408,13 @@ nav a:hover {
         min-width: 36px;
         min-height: 36px;
         font-size: 0.58rem;
+    }
+    
+    .logo-img {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        min-height: 36px;
     }
     
     .mobile-menu-toggle {

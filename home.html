@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="Logo Circle White.png" type="image/png">
 </head>
 <body>
     <!-- Header -->
@@ -16,25 +17,25 @@
         <div class="main-header">
             <div class="container">
                 <div class="header-content">
-                    <a href="index.html" class="logo">
-                        <span class="logo-circle" aria-hidden="true">TPC</span>
-                        <span class="logo-name">TechPrint Core</span>
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <div class="logo">
+                        <img src="Logo Circle White.png" alt="TechPrint Core" class="logo-img">
+                        <span class="logo-name">TechPrint <span class="logo-core">Core</span></span>
+                        <button class="mobile-menu-toggle" id="mobileMenuToggle">
                             <span></span>
                             <span></span>
                             <span></span>
-                    </button>
-                    </a>
+                        </button>
+                    </div>
                     <nav class="nav" id="mainNav" aria-label="Main navigation">
                         <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
                         <div class="nav-panel">
                             <ul>
-                                <li><a href="index.html" class="active">HOME</a></li>
-                                <li><a href="About.html">ABOUT</a></li>
-                                <li><a href="Services.html">SERVICES</a></li>
-                                <li><a href="Pricing.html">PRICING</a></li>
-                                <li><a href="loyalty perks.html">LOYALTY PERKS</a></li>
-                                <li><a href="Contact us.html">CONTACT US</a></li>
+                                <li><a href="/" class="active">HOME</a></li>
+                                <li><a href="/about">ABOUT</a></li>
+                                <li><a href="/services">SERVICES</a></li>
+                                <li><a href="/pricing">PRICING</a></li>
+                                <li><a href="/loyalty-perks">LOYALTY PERKS</a></li>
+                                <li><a href="/contact">CONTACT US</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -82,9 +83,9 @@
                         </div>
                         
                         <div class="hero-buttons">
-                            <a href="Contact us.html" class="btn-primary">Get in Touch with Us →</a>
-                            <a href="loyalty perks.html" class="btn-secondary">Sign Up for Rewards</a>
-                            <a href="Services.html" class="btn-secondary">Request Service Design</a>
+                            <a href="/contact" class="btn-primary">Get in Touch with Us →</a>
+                            <a href="/loyalty-perks" class="btn-secondary">Sign Up for Rewards</a>
+                            <a href="/services" class="btn-secondary">Request Service Design</a>
                         </div>
                     </div>
                 </div>
@@ -344,9 +345,9 @@
                 <h2>New Business, Proven Quality</h2>
                 <p>Experience the difference of working with a dedicated team committed to excellence. We're here to build lasting relationships with every customer in Isabela.</p>
                 <div class="quality-buttons">
-                    <a href="Contact us.html" class="btn-primary">Get in Touch with Us →</a>
-                    <a href="loyalty perks.html" class="btn-secondary">Sign Up for Rewards</a>
-                    <a href="Services.html" class="btn-secondary">Request Service Design</a>
+                    <a href="/contact" class="btn-primary">Get in Touch with Us →</a>
+                    <a href="/loyalty-perks" class="btn-secondary">Sign Up for Rewards</a>
+                    <a href="/services" class="btn-secondary">Request Service Design</a>
                 </div>
             </div>
         </div>
@@ -417,10 +418,10 @@
             <div class="testimonials-header">
                 <div class="feedback-badge">
                     <i class="fas fa-star"></i>
-                    <span>Customer Feedback</span>
+                    <span>New business commitment to quality</span>
                 </div>
-                <h2>What Our Early Customers Say</h2>
-                <p>As a new business in Isabela, we're already making a positive impact. Here's what our first customers have to say about our services.</p>
+                <h2>Our Commitment to Quality</h2>
+                <p>As a new business in Isabela, we're committed to excellence in every print, design, and service. Here's what our early customers say about working with us.</p>
             </div>
             
             <div class="testimonials-grid">
@@ -512,7 +513,6 @@
                 <div class="footer-left">
                     <div class="footer-logo">
                         <h3>TechPrint <span class="core-text">Core</span></h3>
-                        <span>New Business in Isabela</span>
                     </div>
                     <p>Your trusted new partner for professional printing, creative design, and reliable computer services in Isabela. Quality service with personal attention.</p>
                     <div class="social-links">
@@ -526,11 +526,11 @@
                 <div class="footer-middle">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="Services.html">Services</a></li>
-                        <li><a href="About.html">About Us</a></li>
-                        <li><a href="loyalty perks.html">Invitation Services</a></li>
-                        <li><a href="Contact us.html">Contact Us</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/loyalty-perks">Invitation Services</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
                     </ul>
                 </div>
                 
@@ -810,7 +810,7 @@
         // Modal functionality
         const modal = document.getElementById('serviceModal');
         const closeBtn = document.querySelector('.close');
-        const serviceButtons = document.querySelectorAll('a[href="Services.html"].btn-secondary');
+        const serviceButtons = document.querySelectorAll('a[href="/services"].btn-secondary');
         
         // Open modal when clicking "Request Service Design" buttons
         serviceButtons.forEach(button => {
