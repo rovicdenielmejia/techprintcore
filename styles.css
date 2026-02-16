@@ -4074,9 +4074,9 @@ nav a:hover {
         padding: 1rem 0;
     }
     
-    /* Small mobile body padding adjustment */
+    /* Landscape - same single header bar */
     body {
-        padding-top: 90px;
+        padding-top: 56px;
     }
     
     /* Process Section Small Mobile */

@@ -1037,6 +1037,7 @@ ${body}
                 mobileMenuToggle.addEventListener('click', function() {
                     mainNav.classList.toggle('nav-open');
                     mobileMenuToggle.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
                 });
                 
                 // Close menu when clicking on a link
@@ -1045,6 +1046,7 @@ ${body}
                     link.addEventListener('click', function() {
                         mainNav.classList.remove('nav-open');
                         mobileMenuToggle.classList.remove('active');
+                        document.body.classList.remove('menu-open');
                     });
                 });
             }
