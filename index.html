@@ -46,15 +46,18 @@
                                 <span></span>
                                 <span></span>
                             </button>
-                            <nav class="nav" id="mainNav">
-                                <ul>
-                                    <li><a href="index.html" class="active">HOME</a></li>
-                                    <li><a href="About.html">ABOUT</a></li>
-                                    <li><a href="Services.html">SERVICES</a></li>
-                                    <li><a href="Pricing.html">PRICING</a></li>
-                                    <li><a href="loyalty perks.html">LOYALTY PERKS</a></li>
-                                    <li><a href="Contact us.html">CONTACT US</a></li>
-                                </ul>
+                            <nav class="nav" id="mainNav" aria-label="Main navigation">
+                                <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+                                <div class="nav-panel">
+                                    <ul>
+                                        <li><a href="index.html" class="active">HOME</a></li>
+                                        <li><a href="About.html">ABOUT</a></li>
+                                        <li><a href="Services.html">SERVICES</a></li>
+                                        <li><a href="Pricing.html">PRICING</a></li>
+                                        <li><a href="loyalty perks.html">LOYALTY PERKS</a></li>
+                                        <li><a href="Contact us.html">CONTACT US</a></li>
+                                    </ul>
+                                </div>
                             </nav>
                         </div>
                     </div>
@@ -1042,10 +1045,17 @@ ${body}
         
         
         
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle (portfolio-style: slide-in + backdrop)
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const mainNav = document.getElementById('mainNav');
+            const navBackdrop = document.getElementById('navBackdrop');
+            
+            function closeMenu() {
+                if (mainNav) mainNav.classList.remove('nav-open');
+                if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
             
             if (mobileMenuToggle && mainNav) {
                 mobileMenuToggle.addEventListener('click', function() {
@@ -1054,14 +1064,16 @@ ${body}
                     document.body.classList.toggle('menu-open');
                 });
                 
-                // Close menu when clicking on a link
-                const navLinks = mainNav.querySelectorAll('a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        mainNav.classList.remove('nav-open');
-                        mobileMenuToggle.classList.remove('active');
-                        document.body.classList.remove('menu-open');
-                    });
+                if (navBackdrop) {
+                    navBackdrop.addEventListener('click', closeMenu);
+                }
+                
+                mainNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+                
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && mainNav.classList.contains('nav-open')) closeMenu();
                 });
             }
         });

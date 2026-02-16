@@ -176,6 +176,23 @@ body {
     border-bottom-color: #ff4444;
 }
 
+/* Desktop: hide mobile-only nav parts */
+.nav-backdrop {
+    display: none;
+}
+
+.nav-panel {
+    display: block;
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none;
+    box-shadow: none;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+}
+
 .header-actions {
     display: flex;
     align-items: center;
@@ -3641,7 +3658,7 @@ nav a:hover {
         background: #ffffff;
     }
     
-    /* Full-screen overlay menu - portfolio-style */
+    /* Portfolio-style: slide-in panel from right + backdrop (like rovicmejiaportfolio.com) */
     .nav {
         position: fixed;
         top: 0;
@@ -3651,66 +3668,95 @@ nav a:hover {
         width: 100%;
         height: 100vh;
         height: 100dvh;
-        background: #0a0a0a;
-        transition: opacity 0.25s ease, visibility 0.25s ease;
         z-index: 999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4rem 1.5rem 2rem;
-        opacity: 0;
-        visibility: hidden;
         pointer-events: none;
+        visibility: hidden;
     }
     
     .nav-open {
-        opacity: 1;
-        visibility: visible;
         pointer-events: auto;
+        visibility: visible;
+    }
+    
+    .nav-backdrop {
+        display: block;
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .nav-open .nav-backdrop {
+        opacity: 1;
+    }
+    
+    .nav-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: min(320px, 85vw);
+        max-width: 100%;
+        height: 100%;
+        background: #0a0a0a;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.3);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5rem 1.5rem 2rem;
+    }
+    
+    .nav-open .nav-panel {
+        transform: translateX(0);
     }
     
     .nav ul {
         flex-direction: column;
-        gap: 0.25rem;
-        text-align: center;
+        gap: 0;
+        text-align: left;
         list-style: none;
         padding: 0;
         margin: 0;
         width: 100%;
-        max-width: 280px;
     }
     
     .nav li {
         margin: 0;
         width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    .nav li:first-child {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
     
     .nav a {
         font-size: 1rem;
         font-weight: 500;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
-        padding: 0.85rem 1rem;
+        padding: 1rem 1.25rem;
         color: rgba(255, 255, 255, 0.9);
         text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: block;
         width: 100%;
         min-height: 48px;
         transition: color 0.2s ease, background 0.2s ease;
         border-radius: 0;
         border: none;
+        box-sizing: border-box;
     }
     
     .nav a:hover,
     .nav a.active {
         color: #ff4444;
-        background: transparent;
+        background: rgba(255, 68, 68, 0.06);
     }
     
     .nav a.active {
-        border-bottom: none;
         color: #ff4444;
     }
     
@@ -4509,55 +4555,83 @@ nav a:hover {
         padding: 2rem;
     }
     
+    /* Same portfolio-style slide-in panel as mobile */
     .nav {
         position: fixed;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        transition: left 0.3s ease;
+        inset: 0;
         z-index: 999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem 0;
+        pointer-events: none;
+        visibility: hidden;
     }
     
     .nav-open {
-        left: 0;
+        pointer-events: auto;
+        visibility: visible;
+    }
+    
+    .nav-backdrop {
+        display: block;
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .nav-open .nav-backdrop {
+        opacity: 1;
+    }
+    
+    .nav-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: min(320px, 85vw);
+        height: 100%;
+        background: #0a0a0a;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.3);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        padding: 5rem 1.5rem 2rem;
+        overflow-y: auto;
+    }
+    
+    .nav-open .nav-panel {
+        transform: translateX(0);
     }
     
     .nav ul {
         flex-direction: column;
-        gap: 1.5rem;
-        text-align: center;
+        gap: 0;
+        text-align: left;
         list-style: none;
         padding: 0;
         margin: 0;
         width: 100%;
-        max-width: 400px;
+    }
+    
+    .nav li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    .nav li:first-child {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
     
     .nav a {
-        font-size: 1.2rem;
-        padding: 1rem 2rem;
-        color: #ffffff;
-        text-decoration: none;
+        font-size: 1.05rem;
+        padding: 1rem 1.25rem;
         display: block;
-        transition: color 0.3s ease;
-        border-radius: 8px;
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        min-height: 48px;
     }
     
     .nav a:hover,
     .nav a.active {
         color: #ff4444;
-        background: rgba(255, 68, 68, 0.1);
+        background: rgba(255, 68, 68, 0.06);
     }
 }
 
