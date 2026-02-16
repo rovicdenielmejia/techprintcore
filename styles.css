@@ -3705,6 +3705,11 @@ nav a:hover {
         padding: 0 1rem;
     }
     
+    /* All h1 elements centered on mobile */
+    h1 {
+        text-align: center;
+    }
+    
     /* Single header bar */
     .header {
         position: fixed;
@@ -4140,8 +4145,8 @@ nav a:hover {
     }
 }
 
-/* Center all elements on tablet and mobile */
-@media (max-width: 1024px) {
+/* Center all elements on mobile devices only (max-width: 768px) */
+@media (max-width: 768px) {
     .section-header,
     .section-header h2,
     .section-header p,
@@ -4151,6 +4156,7 @@ nav a:hover {
     .quality-content,
     .quality-content h2,
     .quality-content p,
+    .quality-buttons,
     .process h2,
     .about-hero, .services-hero, .loyalty-hero, .contact-hero, .pricing-hero,
     .about-hero p, .services-hero p, .loyalty-hero p, .contact-hero p, .pricing-hero p {
@@ -4162,6 +4168,11 @@ nav a:hover {
     .quality-content p {
         margin-left: auto;
         margin-right: auto;
+    }
+    
+    .quality-buttons {
+        justify-content: center;
+        align-items: center;
     }
     
     .footer-content {
@@ -4199,7 +4210,9 @@ nav a:hover {
         align-items: center;
     }
     
-    .business-hours h4 {
+    .business-hours,
+    .business-hours h4,
+    .hours-grid {
         text-align: center;
     }
     
@@ -4233,7 +4246,10 @@ nav a:hover {
         justify-items: center;
     }
     
-    .value-card {
+    .core-values h2,
+    .value-card,
+    .value-card h3,
+    .value-card p {
         text-align: center;
     }
     
@@ -4300,6 +4316,39 @@ nav a:hover {
     .hero-badge {
         margin-left: auto;
         margin-right: auto;
+    }
+    
+    /* Why Choose / features section */
+    .why-choose h2,
+    .feature-card,
+    .feature-card h3,
+    .feature-card p {
+        text-align: center;
+    }
+    
+    .pre-footer,
+    .pre-footer-content,
+    .pre-footer-content p,
+    .pre-footer .rating,
+    .pre-footer .commitment {
+        text-align: center;
+    }
+    
+    .pre-footer .stars {
+        justify-content: center;
+    }
+    
+    /* General: all headings and paragraphs centered on mobile */
+    h2, h3, h4, p {
+        text-align: center;
+    }
+    
+    /* Forms and buttons centered */
+    .hero-buttons,
+    .loyalty-buttons,
+    .quality-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
     }
 }
 
