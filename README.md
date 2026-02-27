@@ -168,4 +168,4 @@ This website is ready for deployment on any web hosting service that supports st
 
 ## License
 
-© 2025 TechPrint Core. All Rights Reserved.
+© 2026 TechPrint Core. All Rights Reserved.
