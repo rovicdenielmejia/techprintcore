@@ -1,6 +1,6 @@
 # TechPrint Core Website
 
-A modern, responsive website for TechPrint Core - a professional printing, design, and computer services business in Isabela, Philippines.
+A modern, responsive website for TechPrint Core - a professional printing and design services business in Isabela, Philippines.
 
 ## Features
 

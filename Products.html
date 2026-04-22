@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Products - TechPrint Core</title>
+    <title>Premium Products - TechPrint Core & TPC Creatives</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
                             </ul>
                         </div>
                     </nav>
-                    <div class="cart-icon" onclick="toggleCart()">
+                    <div class="cart-icon" onclick="toggleCart()" style="display: none;">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count" id="cartCount">0</span>
                     </div>
@@ -57,8 +57,13 @@
     <section class="products-hero">
         <div class="container">
             <div class="products-hero-content">
-                <h1>Product Catalog</h1>
-                <p>Discover our premium promotional products and custom merchandise</p>
+                <h1>Premium Promotional Products</h1>
+                <p>Custom merchandise and branding solutions for your business</p>
+                <div class="hero-badges" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 25px;">
+                    <span style="background: rgba(255,68,68,0.15); color: #ff4444; padding: 8px 18px; border-radius: 25px; font-size: 0.9rem; font-weight: 500;"><i class="fas fa-star"></i> Premium Quality</span>
+                    <span style="background: rgba(255,68,68,0.15); color: #ff4444; padding: 8px 18px; border-radius: 25px; font-size: 0.9rem; font-weight: 500;"><i class="fas fa-shipping-fast"></i> Fast Delivery</span>
+                    <span style="background: rgba(255,68,68,0.15); color: #ff4444; padding: 8px 18px; border-radius: 25px; font-size: 0.9rem; font-weight: 500;"><i class="fas fa-paint-brush"></i> Custom Designs</span>
+                </div>
             </div>
         </div>
     </section>
@@ -67,15 +72,16 @@
     <section class="products-section">
         <div class="container">
             <div class="products-header">
-                <h2>Available Products</h2>
-                <p>High-quality promotional items perfect for your business needs</p>
+                <h2>Our Product Collections</h2>
+                <p>Premium promotional products tailored for your brand</p>
             </div>
             
             <div class="products-grid">
                 <!-- Commercial Calendar -->
                 <div class="product-card">
-                    <div class="product-image">
+                    <div class="product-image" onclick="openImageModal('COMMERCIAL CALENDAR Price .png')" style="cursor: pointer;" title="Click to enlarge">
                         <img src="COMMERCIAL CALENDAR Price .png" alt="Commercial Calendar Pricing" loading="lazy">
+                        <div class="zoom-hint"><i class="fas fa-search-plus"></i> Click to view pricing</div>
                     </div>
                     <div class="product-info">
                         <h3>Commercial Calendar</h3>
@@ -95,25 +101,18 @@
                             </div>
                         </div>
                         <div class="product-controls">
-                            <div class="quantity-selector">
-                                <label for="calendar-qty">Quantity:</label>
-                                <div class="qty-input">
-                                    <button type="button" class="qty-btn" onclick="changeQuantity('calendar', -1)">-</button>
-                                    <input type="number" id="calendar-qty" value="50" min="50" step="50" onchange="updateQuantity('calendar', this.value)">
-                                    <button type="button" class="qty-btn" onclick="changeQuantity('calendar', 1)">+</button>
-                                </div>
-                            </div>
-                            <button class="add-to-cart-btn" onclick="addToCart('calendar', 'Commercial Calendar', document.getElementById('calendar-qty').value)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
-                            </button>
+                            <a href="/contact" class="add-to-cart-btn">
+                                <i class="fas fa-quote-right"></i> Request Quote
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Refrigerator Magnet -->
                 <div class="product-card">
-                    <div class="product-image">
+                    <div class="product-image" onclick="openImageModal('Ref Magnet.png')" style="cursor: pointer;" title="Click to enlarge">
                         <img src="Ref Magnet.png" alt="Refrigerator Magnet Pricing" loading="lazy">
+                        <div class="zoom-hint"><i class="fas fa-search-plus"></i> Click to view pricing</div>
                     </div>
                     <div class="product-info">
                         <h3>Refrigerator Magnet</h3>
@@ -133,25 +132,18 @@
                             </div>
                         </div>
                         <div class="product-controls">
-                            <div class="quantity-selector">
-                                <label for="magnet-qty">Quantity:</label>
-                                <div class="qty-input">
-                                    <button type="button" class="qty-btn" onclick="changeQuantity('magnet', -1)">-</button>
-                                    <input type="number" id="magnet-qty" value="50" min="50" step="50" onchange="updateQuantity('magnet', this.value)">
-                                    <button type="button" class="qty-btn" onclick="changeQuantity('magnet', 1)">+</button>
-                                </div>
-                            </div>
-                            <button class="add-to-cart-btn" onclick="addToCart('magnet', 'Refrigerator Magnet', document.getElementById('magnet-qty').value)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
-                            </button>
+                            <a href="/contact" class="add-to-cart-btn">
+                                <i class="fas fa-quote-right"></i> Request Quote
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Acrylic Keyring -->
                 <div class="product-card">
-                    <div class="product-image">
+                    <div class="product-image" onclick="openImageModal('Acrylic Keyring.png')" style="cursor: pointer;" title="Click to enlarge">
                         <img src="Acrylic Keyring.png" alt="Acrylic Keyring Pricing" loading="lazy">
+                        <div class="zoom-hint"><i class="fas fa-search-plus"></i> Click to view pricing</div>
                     </div>
                     <div class="product-info">
                         <h3>Acrylic Keyring</h3>
@@ -171,17 +163,9 @@
                             </div>
                         </div>
                         <div class="product-controls">
-                            <div class="quantity-selector">
-                                <label for="keyring-qty">Quantity:</label>
-                                <div class="qty-input">
-                                    <button type="button" class="qty-btn" onclick="changeQuantity('keyring', -1)">-</button>
-                                    <input type="number" id="keyring-qty" value="50" min="50" step="50" onchange="updateQuantity('keyring', this.value)">
-                                    <button type="button" class="qty-btn" onclick="changeQuantity('keyring', 1)">+</button>
-                                </div>
-                            </div>
-                            <button class="add-to-cart-btn" onclick="addToCart('keyring', 'Acrylic Keyring', document.getElementById('keyring-qty').value)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
-                            </button>
+                            <a href="/contact" class="add-to-cart-btn">
+                                <i class="fas fa-quote-right"></i> Request Quote
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -189,8 +173,17 @@
         </div>
     </section>
 
-    <!-- Cart Sidebar -->
-    <div class="cart-sidebar" id="cartSidebar">
+    <!-- Call to Action Section -->
+    <section class="cta-section" style="padding: 60px 20px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); text-align: center;">
+        <div class="container">
+            <h2 style="color: #fff; font-size: 2rem; margin-bottom: 15px;">Need a Custom Product?</h2>
+            <p style="color: #aaa; margin-bottom: 25px;">We create unique promotional items tailored to your brand. Contact us for custom orders.</p>
+            <a href="/contact" style="display: inline-block; padding: 15px 35px; background: #ff4444; color: #fff; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s;">Get a Custom Quote</a>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar (Hidden - using quote system) -->
+    <div class="cart-sidebar" id="cartSidebar" style="display: none;">
         <div class="cart-header">
             <h3>Shopping Cart</h3>
             <button class="close-cart" onclick="toggleCart()">
@@ -217,10 +210,10 @@
             </div>
         </div>
     </div>
-    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()" style="display: none;"></div>
 
     <!-- Checkout Modal -->
-    <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-modal" id="checkoutModal" style="display: none;">
         <div class="checkout-content">
             <div class="checkout-header">
                 <h3>Checkout</h3>
@@ -307,7 +300,7 @@
             </div>
         </div>
     </div>
-    <div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckout()"></div>
+    <div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckout()" style="display: none;"></div>
 
     <!-- Footer -->
     <footer class="footer" style="margin-top: 4rem;">
@@ -317,12 +310,12 @@
                     <div class="footer-logo">
                         <h3>TechPrint <span class="core-text">Core</span></h3>
                     </div>
-                    <p>Your trusted new partner for professional printing, creative design, and reliable computer services in Isabela. Quality service with personal attention.</p>
+                    <p>Your trusted partner for professional printing and creative design services in Isabela. Quality service with personal attention.</p>
                     <div class="social-links">
                         <a href="mailto:techprintcoreph@gmail.com"><i class="fas fa-envelope"></i></a>
                         <a href="https://www.facebook.com/techprintcore" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://www.instagram.com/techprintcoreph/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/639541763978" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="viber://chat?number=639755636276" target="_blank"><i class="fab fa-viber"></i></a>
                     </div>
                 </div>
                 
@@ -343,21 +336,22 @@
                         <li class="flex items-center">
                             <i class="fas fa-phone h-4 w-4 text-red-400 mr-3 flex-shrink-0"></i>
                             <div class="text-sm text-gray-400">
-                                <div>0954-176-3978</div>
                                 <div>0965-669-4049</div>
+                                <div>0975-563-6276</div>
                             </div>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-envelope h-4 w-4 text-red-400 mr-3 flex-shrink-0"></i>
-                            <span class="text-sm text-gray-400">techprintcoreph@gmail.com</span>
+                            <div class="text-sm text-gray-400">
+                                <div>techprintcoreph@gmail.com</div>
+                                <div>tpccreatives.info@gmail.com</div>
+                            </div>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt h-4 w-4 text-red-400 mr-3 mt-1 flex-shrink-0"></i>
                             <div class="text-sm text-gray-400">
-                                <div class="font-medium">Echague Branch</div>
-                                <div>Purok 4, Villa Victoria</div>
-                                <div class="font-medium mt-2">Jones Branch</div>
-                                <div>Coming Soon</div>
+                                <div class="font-medium">TPC Hub, COG Bldg.</div>
+                                <div>Purok 4 Villa Victoria, Echague</div>
                             </div>
                         </li>
                     </ul>
@@ -373,17 +367,18 @@
                     </div>
                     <div class="hours-item">
                         <span class="day">Saturday:</span>
-                        <span class="time">8:00 AM - 12:00 PM</span>
+                        <span class="time">Closed</span>
                     </div>
                     <div class="hours-item">
                         <span class="day">Sunday:</span>
-                        <span class="time">By Appointment (1:00 PM - 5:00 PM)</span>
+                        <span class="time">Closed</span>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 TechPrint Core. All Rights Reserved.</p>
+                <p>&copy; <span id="currentYear"></span> TechPrint Core. All Rights Reserved.</p>
+    <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
             </div>
         </div>
     </footer>
@@ -740,7 +735,7 @@
                     instructions = `
                         <div class="payment-info">
                             <h5>GCash Payment</h5>
-                            <p>Send payment to: <strong>0954-176-3978</strong></p>
+                            <p>Send payment to: <strong>0965-669-4049</strong></p>
                             <p>Please include your order reference in the payment note.</p>
                         </div>
                     `;
@@ -768,8 +763,8 @@
                         <div class="payment-info">
                             <h5>Cash on Pickup</h5>
                             <p>Pay with cash when you pick up your order at our store.</p>
-                            <p><strong>Location:</strong> Purok 4, Villa Victoria, Echague, Isabela</p>
-                            <p><strong>Business Hours:</strong> Mon-Fri 8AM-5PM, Sat 8AM-12PM</p>
+                            <p><strong>Location:</strong> TPC Hub, COG Bldg. Purok 4 Villa Victoria, Echague</p>
+                            <p><strong>Business Hours:</strong> Mon-Fri 8AM-5PM, Closed on Weekends</p>
                         </div>
                     `;
                     break;
@@ -798,8 +793,8 @@
             // Create order summary
             const orderSummary = createOrderSummary();
             
-            // Send via WhatsApp
-            sendOrderViaWhatsApp(orderSummary);
+            // Send via Viber
+            sendOrderViaViber(orderSummary);
             
             // Also copy to clipboard as backup
             navigator.clipboard.writeText(orderSummary).then(() => {
@@ -834,39 +829,152 @@
             summary += `💰 *Payment Instructions:*\n`;
             switch(paymentMethod) {
                 case 'gcash':
-                    summary += `Send payment to: 0954-176-3978\nInclude order reference in payment note.`;
+                    summary += `Send payment to: 0965-669-4049\nInclude order reference in payment note.`;
                     break;
                 case 'bank':
                     summary += `Bank transfer - Contact us for account details.`;
                     break;
                 case 'cash':
-                    summary += `Cash on pickup at store.\nLocation: Purok 4, Villa Victoria, Echague, Isabela`;
+                    summary += `Cash on pickup at store.\nLocation: TPC Hub, COG Bldg. Purok 4 Villa Victoria, Echague`;
                     break;
             }
             
             summary += `\n\n📞 Contact us for pricing and confirmation:\n`;
-            summary += `Phone: 0954-176-3978\n`;
-            summary += `Email: techprintcoreph@gmail.com`;
+            summary += `Phone: 0965-669-4049 / 0975-563-6276\n`;
+            summary += `Email: techprintcoreph@gmail.com / tpccreatives.info@gmail.com`;
             
             return summary;
         }
 
-        function sendOrderViaWhatsApp(orderSummary) {
-            const phoneNumber = '639541763978'; // Your WhatsApp number
+        function sendOrderViaViber(orderSummary) {
+            const phoneNumber = '6397555636276'; // Your Viber number
             const encodedMessage = encodeURIComponent(orderSummary);
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            const viberUrl = `viber://chat?number=${phoneNumber}&text=${encodedMessage}`;
             
-            // Open WhatsApp in new tab
-            window.open(whatsappUrl, '_blank');
+            // Open Viber in new tab
+            window.open(viberUrl, '_blank');
             
             // Show success message and clear cart
-            alert('Order sent via WhatsApp! We will contact you soon to confirm pricing and delivery details.');
+            alert('Order sent via Viber! We will contact you soon to confirm pricing and delivery details.');
             
             // Clear cart and close checkout
             clearCart();
             closeCheckout();
         }
     </script>
+
+    <!-- Image Zoom Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="close-modal">&times;</span>
+        <img id="modalImage" class="modal-content" onclick="event.stopPropagation()">
+        <div id="modalCaption"></div>
+    </div>
+
+    <script>
+        function openImageModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const captionText = document.getElementById('modalCaption');
+            
+            modal.style.display = "flex";
+            modalImg.src = imageSrc;
+            captionText.innerHTML = imageSrc.replace('.png', '').replace(/([A-Z])/g, ' $1').trim();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = "none";
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeImageModal();
+            }
+        });
+    </script>
+
+    <style>
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255,68,68,0.3);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); }
+            to { transform: scale(1); }
+        }
+
+        #modalCaption {
+            margin-top: 20px;
+            color: #fff;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10000;
+        }
+
+        .close-modal:hover {
+            color: #ff4444;
+        }
+
+        .zoom-hint {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-image:hover .zoom-hint {
+            opacity: 1;
+        }
+    </style>
+
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
     </script>
